@@ -620,16 +620,47 @@ body.v24-voice-open{overflow:hidden}
 .ut-addr .form-check{margin:.4rem 0}
 .ut-toast{position:fixed;left:50%;bottom:12rem;transform:translate(-50%,1.6rem);opacity:0;pointer-events:none;z-index:2147483002;background:rgba(30,33,36,.94);color:#fff;font-size:1.5rem;line-height:1.45;padding:1.2rem 1.8rem;border-radius:1.2rem;max-width:min(92vw,46rem);text-align:center;transition:opacity .2s,transform .2s;word-break:keep-all}
 .ut-toast.on{opacity:1;transform:translate(-50%,0)}
-/* [사용성 평가] 모바일 전용홈 캐릭터 : 퍼블리싱(UI-AI-LGA01M) 캐릭터·배치로 통일 */
+/* [사용성 평가] 모바일 전용홈 상단 : 피그마 'MO_AI국민비서'(26461:107427) 기준
+   캐릭터 90×90 · 검색창 바로 위(2px 겹침) · 제목 24px/36px 2줄 */
 @media (max-width:1024px){
- .aih-hero .aih-top{margin-bottom:0;z-index:0}
- .aih-char{width:9rem;height:9rem;background:url("static/images/main/img-main-serach-ai.png") no-repeat center bottom/contain}
- .aih-tit{padding-bottom:1.2rem}
- .aih .ai-search-box .ai-search-input{font-size:1.6rem}
+ .aih-hero .aih-top{display:flex;align-items:flex-end;justify-content:center;gap:0;margin:0 0 -.2rem;position:relative;z-index:1}
+ .aih-char{flex:none;width:9rem;height:9rem;margin-right:-.7rem;background:url("static/images/ai/img-gubbi-home-figma.png") no-repeat center bottom/contain}
+ .aih-tit{padding:0 0 .4rem;font-size:2.4rem;line-height:3.6rem;text-align:left;white-space:nowrap}
+ .aih .ai-search-box .ai-search-input{font-size:1.6rem;min-width:0}
 }
+/* [사용성 평가] 반응형 : 폴더블 접힘(280px)~펼침(700~900px) */
+#demoProtoBanner{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:1024px){
+ .aih-grid{grid-template-columns:minmax(0,1fr)}
+ .aih-item{min-width:0}
+ .aih-mohead h2{min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+ .aih .prompt-chip{max-width:100%;word-break:keep-all}
+}
+@media (max-width:340px){
+ .aih-mohead{padding:0 .4rem}
+ .aih-mohead h2{font-size:1.7rem}
+ .aih-mohead .u{width:3.4rem}
+ .aih-tit{font-size:2rem;line-height:3rem}
+ .aih-char{width:7.6rem;height:7.6rem}
+ .aih .ai-search-box{padding:0 .4rem 0 1.4rem}
+ .aih-svc{padding:2rem 1.2rem 1.2rem}
+ .aih-item{padding:.6rem .6rem .6rem 1.2rem}
+ .aih-item .nm{font-size:1.5rem}
+ .aih-item .go,.aih-item .ai{width:3.2rem;height:3.2rem}
+}
+/* 폴더블 펼침·태블릿 폭 : 본문 폭을 제한해 늘어지지 않게 */
+@media (min-width:600px) and (max-width:1024px){
+ .aih-inner,.aih-chat .iw-ai-wrap{max-width:64rem;margin-left:auto;margin-right:auto}
+ .aih-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+/* 대화 답변이 좁은 화면(폴더블 접힘)에서 가로로 넘치지 않게 */
+#aiLog,#aiLog .ai-conversation-section,#aiLog .ai-card-link-panel,#aiLog .btn-card-box{min-width:0;max-width:100%}
+#aiLog .btn-card-box{box-sizing:border-box}
+#aiLog .btn-card-box .txt{overflow:hidden;text-overflow:ellipsis}
+#aiLog .chip-area .form-chip label{white-space:normal;word-break:keep-all;height:auto;min-height:4.4rem;text-align:left}
 </style>
 </head>
-<body class="iw-ai-body aih-page"><div id="demoProtoBanner" role="note">가상 서비스 · 사용성 평가용 시연 화면 · 실제 민원 접수 안 됨</div>
+<body class="iw-ai-body aih-page"><div id="demoProtoBanner" role="note">가상 서비스 · 사용성 평가용 시연 화면</div>
 
   <div id="iw_wrap">
     <!--//////// 헤더영역 s ////////-->
@@ -2176,6 +2207,15 @@ body.v24-voice-open{overflow:hidden}
 	function voiceNotice(e) { if (e) e.preventDefault(); toast('말로 묻기는 <strong>‘② 음성 서비스’</strong>에서 체험해 주세요.<br>이 화면에서는 글자로 입력해 주세요.'); }
 	document.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('a[href="#demo-go"]'); if (!a) return; e.preventDefault(); e.stopImmediatePropagation(); toast('시연에서는 실제 정부24 화면으로 이동하지 않아요.'); }, true);
 	(function () { var m = new URLSearchParams(location.search).get('mode'); if (m && homeInput) homeInput.setAttribute('placeholder', m === 'benefit' ? '예) 내가 받을 수 있는 혜택 알려줘' : '예) 주민등록등본 발급해줘'); })();
+	// 폴더블 접힘 등 좁은 화면 : 입력창 안내 문구를 짧게
+	(function () {
+		function fit() {
+			var narrow = window.innerWidth <= 340, m = new URLSearchParams(location.search).get('mode');
+			if (bInput) bInput.setAttribute('placeholder', narrow ? '물어보세요' : '정부24에 물어보세요');
+			if (homeInput) homeInput.setAttribute('placeholder', m ? (m === 'benefit' ? (narrow ? '혜택 알려줘' : '예) 내가 받을 수 있는 혜택 알려줘') : (narrow ? '등본 발급해줘' : '예) 주민등록등본 발급해줘')) : (narrow ? 'AI에게 물어보세요' : 'AI에게 물어보세요'));
+		}
+		fit(); window.addEventListener('resize', fit);
+	})();
 
 	/* ---------- 버튼 동작 ---------- */
 	var ACTS = {

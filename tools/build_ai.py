@@ -35,7 +35,7 @@ s = s.replace('../../static/', 'static/')
 s = s.replace('./UI-PT-AAA01M_3차_시연.html', 'index.html').replace('./UI-PT-AAA01M-AD_3차_시연.html', 'index.html')
 s = re.sub(r'<title>.*?</title>', '<title>[가상 서비스] 정부24 AI국민비서</title>', s, count=1, flags=re.S)
 rep('</head>', '<meta name="robots" content="noindex,nofollow">\n<script src="demo/data.js"></script>\n<style id="ut-patch">' + open(os.path.join(OUT, 'tools/ut_ai.css'), encoding='utf-8').read() + '</style>\n</head>')
-rep('시연용 프로토타입 · 실제 정부24 서비스가 아닙니다', '가상 서비스 · 사용성 평가용 시연 화면 · 실제 민원 접수 안 됨')
+rep('시연용 프로토타입 · 실제 정부24 서비스가 아닙니다', '가상 서비스 · 사용성 평가용 시연 화면')
 s = re.sub(r'href="https://(www\.gov\.kr/portal/main|efamily\.scourt\.go\.kr)"', 'href="#demo-go"', s)
 
 # 시연 리모컨·하단 '누르고 말하기' 버튼 제거

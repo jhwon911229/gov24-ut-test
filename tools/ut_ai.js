@@ -42,3 +42,12 @@
 	function voiceNotice(e) { if (e) e.preventDefault(); toast('말로 묻기는 <strong>‘② 음성 서비스’</strong>에서 체험해 주세요.<br>이 화면에서는 글자로 입력해 주세요.'); }
 	document.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('a[href="#demo-go"]'); if (!a) return; e.preventDefault(); e.stopImmediatePropagation(); toast('시연에서는 실제 정부24 화면으로 이동하지 않아요.'); }, true);
 	(function () { var m = new URLSearchParams(location.search).get('mode'); if (m && homeInput) homeInput.setAttribute('placeholder', m === 'benefit' ? '예) 내가 받을 수 있는 혜택 알려줘' : '예) 주민등록등본 발급해줘'); })();
+	// 폴더블 접힘 등 좁은 화면 : 입력창 안내 문구를 짧게
+	(function () {
+		function fit() {
+			var narrow = window.innerWidth <= 340, m = new URLSearchParams(location.search).get('mode');
+			if (bInput) bInput.setAttribute('placeholder', narrow ? '물어보세요' : '정부24에 물어보세요');
+			if (homeInput) homeInput.setAttribute('placeholder', m ? (m === 'benefit' ? (narrow ? '혜택 알려줘' : '예) 내가 받을 수 있는 혜택 알려줘') : (narrow ? '등본 발급해줘' : '예) 주민등록등본 발급해줘')) : (narrow ? 'AI에게 물어보세요' : 'AI에게 물어보세요'));
+		}
+		fit(); window.addEventListener('resize', fit);
+	})();
