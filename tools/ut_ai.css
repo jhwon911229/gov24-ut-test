@@ -10,7 +10,8 @@
 .ut-toast.on{opacity:1;transform:translate(-50%,0)}
 /* [사용성 평가] 모바일 전용홈 캐릭터 : 퍼블리싱(UI-AI-LGA01M) 캐릭터·배치로 통일 */
 @media (max-width:1024px){
- .aih-hero .aih-top{margin-bottom:-.6rem}
+ .aih-hero .aih-top{margin-bottom:0;z-index:0}
  .aih-char{width:9rem;height:9rem;background:url("static/images/main/img-main-serach-ai.png") no-repeat center bottom/contain}
  .aih-tit{padding-bottom:1.2rem}
+ .aih .ai-search-box .ai-search-input{font-size:1.6rem}
 }
