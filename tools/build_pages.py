@@ -41,7 +41,6 @@ def common(s, title):
         s = balanced_remove(s, s[i:i+60])
     # 푸터 안내 추가
     s = s.replace('<footer id="iw_footer">', '<div class="demo-foot-note">이 화면은 「정부24 AI국민비서」 사용성 평가를 위해 만든 <strong>가상 서비스(시연용)</strong>입니다. 이름·주소·혜택 정보는 모두 예시이며, 실제 인증·발급·신청은 이루어지지 않습니다.</div>\n<footer id="iw_footer">', 1)
-    s = s.replace('<h1 class="logo"><a href="">', '<h1 class="logo"><a href="main.html">', 1)
     s = s.replace('</body>', '<script src="demo/data.js"></script>\n<script src="demo/demo-ai.js"></script>\n</body>', 1)
     return s
 
