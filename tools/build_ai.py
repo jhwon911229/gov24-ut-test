@@ -54,11 +54,14 @@ rep("if (vm) { VOICE_Q", "if (false) { VOICE_Q")
 # 발급: 등본·초본은 로그인 후 주소 확인 단계
 rep("singleIssue: function (b) { var d = b.getAttribute('data-doc'); addQ('발급하기'); needAuth('발급을 위해 본인확인이 필요해요.', function () { packProgress([d]); }, true); },",
     "singleIssue: function (b) { var d = b.getAttribute('data-doc'); addQ('발급하기'); needAuth('발급을 위해 본인확인이 필요해요.', function () { if (needsAddr(d)) addrAsk(d); else packProgress([d]); }, true); },\n"
-    "\t\taddrYes: function (b) { addQ('맞아요'); packProgress([b.getAttribute('data-doc')]); },\n"
+    "\t\taddrYes: function (b) { addQ('맞아요'); packProgress(b.getAttribute('data-doc').split('|')); },\n"
     "\t\taddrPick: function (b) { addQ('아니요, 다시 고를게요'); addrPick(b.getAttribute('data-doc')); },\n"
-    "\t\taddrDone: function (b) { addQ(ADDR.sido + ' ' + ADDR.sgg); packProgress([b.getAttribute('data-doc')]); },")
+    "\t\taddrDone: function (b) { addQ(ADDR.sido + ' ' + ADDR.sgg); packProgress(b.getAttribute('data-doc').split('|')); },")
+# 일괄발급: 등본이 포함되면 주소 확인
+rep("needAuth('발급을 위해 본인확인이 필요해요.', function () { packProgress(docs); }, true);",
+    "needAuth('발급을 위해 본인확인이 필요해요.', function () { if (docs.some(needsAddr)) addrAsk(docs.join('|')); else packProgress(docs); }, true);")
 rep("put(sec, '<p class=\"ai-followup-copy\">' + docs.map(esc).join(', ') + ' 발급에 필요한 정보를 확인하여 진행할게요.</p>' +",
-    "put(sec, '<p class=\"ai-followup-copy\">' + (docs.length === 1 && needsAddr(docs[0]) ? '“' + esc(ADDR.sido + ' ' + ADDR.sgg) + '”(으)로 ' : '') + docs.map(esc).join(', ') + ' 발급에 필요한 정보를 확인하여 진행할게요.</p>' +")
+    "put(sec, '<p class=\"ai-followup-copy\">' + docs.map(esc).join(', ') + ' 발급에 필요한 정보를 확인하여 진행할게요.' + (docs.some(needsAddr) ? ' 주민등록표 등본은 <strong>“' + esc(ADDR.sido + ' ' + ADDR.sgg) + '”</strong> 주소로 발급해요.' : '') + '</p>' +")
 # 발급 완료: 문서 미리보기(썸네일) 제거
 rep("'<p class=\"ai-complete-message\">모든 발급이 완료되었습니다. 각 문서는 서비스 신청 내역에서 확인할 수 있습니다.</p>' + papersHtml(docs) + links([['서비스 신청내역', MYAPPLY]]));",
     "'<p class=\"ai-complete-message\">모든 발급이 완료되었습니다. 위 발급 진행 현황의 [인쇄하기]를 누르면 문서를 보고 인쇄할 수 있어요.</p>' + links([['서비스 신청내역', MYAPPLY]]));")

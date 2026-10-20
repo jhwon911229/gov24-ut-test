@@ -3,9 +3,9 @@
 	   ====================================================================== */
 	var ADDR = { sido: (window.DEMO && DEMO.user.sido) || '경기도', sgg: (window.DEMO && DEMO.user.sigungu) || '파주시' };
 	function needsAddr(d) { return /주민등록표/.test(d || ''); }
-	function addrAsk(doc) {
+	function addrAsk(doc) {   // doc : 서류명, 일괄발급이면 '서류1|서류2|…'
 		answer(false, function (sec) {
-			put(sec, '<p>' + NAME + '님, 주민등록상 주소가 <strong>“' + esc(ADDR.sido + ' ' + ADDR.sgg) + '”</strong>가 맞나요? 아니라면 다시 골라 주세요.</p>' +
+			put(sec, (doc.indexOf('|') > -1 ? '<p>선택하신 서류 중 <strong>주민등록표 등본</strong>은 주소 확인이 필요해요.</p>' : '') + '<p>' + NAME + '님, 주민등록상 주소가 <strong>“' + esc(ADDR.sido + ' ' + ADDR.sgg) + '”</strong>가 맞나요? 아니라면 다시 골라 주세요.</p>' +
 				chips('addr', [['맞아요', 'data-act="addrYes" data-doc="' + esc(doc) + '"'], ['아니요, 다시 고를게요', 'data-act="addrPick" data-doc="' + esc(doc) + '"']], 'ai-conversation-actions ai-delivery-options'));
 		}, { delay: 500 });
 	}

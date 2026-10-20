@@ -1960,12 +1960,12 @@ body.v24-voice-open{overflow:hidden}
 		$$('input', sec).forEach(function (i) { i.disabled = true; });
 		if (!docs.length) { addQ('발급하기'); say('선택된 서류가 없어요. 필요한 서류를 체크한 뒤 다시 눌러 주세요.'); $$('input', sec).forEach(function (i) { i.disabled = false; }); $$('button[data-act]', sec).forEach(function (x) { x.disabled = false; }); return; }
 		addQ('선택한 ' + docs.length + '건 발급하기');
-		needAuth('발급을 위해 본인확인이 필요해요.', function () { packProgress(docs); }, true);
+		needAuth('발급을 위해 본인확인이 필요해요.', function () { if (docs.some(needsAddr)) addrAsk(docs.join('|')); else packProgress(docs); }, true);
 	}
 	function packProgress(docs) {
 		answer(true, function (sec) {
 			var id = ++uid;
-			put(sec, '<p class="ai-followup-copy">' + (docs.length === 1 && needsAddr(docs[0]) ? '“' + esc(ADDR.sido + ' ' + ADDR.sgg) + '”(으)로 ' : '') + docs.map(esc).join(', ') + ' 발급에 필요한 정보를 확인하여 진행할게요.</p>' +
+			put(sec, '<p class="ai-followup-copy">' + docs.map(esc).join(', ') + ' 발급에 필요한 정보를 확인하여 진행할게요.' + (docs.some(needsAddr) ? ' 주민등록표 등본은 <strong>“' + esc(ADDR.sido + ' ' + ADDR.sgg) + '”</strong> 주소로 발급해요.' : '') + '</p>' +
 				'<section class="ai-package-panel"><h3 class="employment-package-heading"><button type="button" class="employment-package-toggle" aria-expanded="true" aria-controls="pg' + id + '"><span class="employment-package-title">발급 진행 현황</span><i class="issue-toggle-icon is-open" aria-hidden="true"></i></button></h3>' +
 				'<div class="employment-package-detail" id="pg' + id + '"><div class="ai-process-messages"><ul class="ai-process-list" id="pgs' + id + '"><li class="now">민원이 발급 중입니다.</li><li>모든 민원의 발급이 완료되었습니다.</li></ul></div>' +
 				'<div class="ai-progress-wrap"><div class="ai-progress-label"><span id="pgl' + id + '">0/' + docs.length + '건 완료</span><span id="pgp' + id + '">0%</span></div><div class="ai-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="pgb' + id + '"><span style="width:0%"></span></div></div>' +
@@ -2130,9 +2130,9 @@ body.v24-voice-open{overflow:hidden}
 	   ====================================================================== */
 	var ADDR = { sido: (window.DEMO && DEMO.user.sido) || '경기도', sgg: (window.DEMO && DEMO.user.sigungu) || '파주시' };
 	function needsAddr(d) { return /주민등록표/.test(d || ''); }
-	function addrAsk(doc) {
+	function addrAsk(doc) {   // doc : 서류명, 일괄발급이면 '서류1|서류2|…'
 		answer(false, function (sec) {
-			put(sec, '<p>' + NAME + '님, 주민등록상 주소가 <strong>“' + esc(ADDR.sido + ' ' + ADDR.sgg) + '”</strong>가 맞나요? 아니라면 다시 골라 주세요.</p>' +
+			put(sec, (doc.indexOf('|') > -1 ? '<p>선택하신 서류 중 <strong>주민등록표 등본</strong>은 주소 확인이 필요해요.</p>' : '') + '<p>' + NAME + '님, 주민등록상 주소가 <strong>“' + esc(ADDR.sido + ' ' + ADDR.sgg) + '”</strong>가 맞나요? 아니라면 다시 골라 주세요.</p>' +
 				chips('addr', [['맞아요', 'data-act="addrYes" data-doc="' + esc(doc) + '"'], ['아니요, 다시 고를게요', 'data-act="addrPick" data-doc="' + esc(doc) + '"']], 'ai-conversation-actions ai-delivery-options'));
 		}, { delay: 500 });
 	}
@@ -2176,9 +2176,9 @@ body.v24-voice-open{overflow:hidden}
 		packIssue: packIssue,
 		packStop: function () { addQ('그만두기'); say('알겠어요. 필요할 때 다시 말씀해 주세요.', '', { end: true }); },
 		singleIssue: function (b) { var d = b.getAttribute('data-doc'); addQ('발급하기'); needAuth('발급을 위해 본인확인이 필요해요.', function () { if (needsAddr(d)) addrAsk(d); else packProgress([d]); }, true); },
-		addrYes: function (b) { addQ('맞아요'); packProgress([b.getAttribute('data-doc')]); },
+		addrYes: function (b) { addQ('맞아요'); packProgress(b.getAttribute('data-doc').split('|')); },
 		addrPick: function (b) { addQ('아니요, 다시 고를게요'); addrPick(b.getAttribute('data-doc')); },
-		addrDone: function (b) { addQ(ADDR.sido + ' ' + ADDR.sgg); packProgress([b.getAttribute('data-doc')]); },
+		addrDone: function (b) { addQ(ADDR.sido + ' ' + ADDR.sgg); packProgress(b.getAttribute('data-doc').split('|')); },
 		print: function (b) { openDoc(b.getAttribute('data-doc')); $$('button[data-act]', b.closest('.ai-conversation-section')).forEach(function (x) { x.disabled = false; }); },
 	};
 
