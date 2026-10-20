@@ -1,6 +1,6 @@
 import re, os, shutil
 import sys
-# 사용: python3 tools/build_pages.py <퍼블리싱 contents 폴더>
+# 사용: python3 tools/build_pages.py <퍼블리싱 contents 폴더>  → benefit.html, benefit-list.html
 SRC=(sys.argv[1] if len(sys.argv)>1 else '/home/claude/up/html/html/contents').rstrip('/')+'/'
 OUT=os.path.join(os.path.dirname(os.path.abspath(__file__)),'..')+'/'
 os.makedirs(OUT, exist_ok=True)
@@ -44,43 +44,8 @@ def common(s, title):
     s = s.replace('</body>', '<script src="demo/data.js"></script>\n<script src="demo/demo-ai.js"></script>\n</body>', 1)
     return s
 
-# ---- 전용홈
-h = open(SRC + 'UI-AI-LGA01M.html', encoding='utf-8').read()
-h = balanced_remove(h, '<div class="listening-area" id="voiceListeningLayer"')
-h = common(h, '정부24 AI국민비서')
-h = h.replace('<body class="', '<body data-page="home" class="', 1)
-open(OUT + 'ai.html', 'w', encoding='utf-8').write(h)
+# ai.html(전용홈+대화)은 tools/build_ai.py 로 생성합니다(gov24-ai-demo 플로우 기준).
 
-# ---- 대화
-d = open(SRC + 'UI-AI-LGA01M_dialogue.html', encoding='utf-8').read()
-m = re.search(r'<div class="iw-ai-prompt-area ai-issuance-view">\s*<div class="input-ai-area bottom">', d)
-inp_start = m.start()
-# 입력 영역 블록 추출
-tmp = d[inp_start:]
-depth = 0
-for mm in re.finditer(r'<(/?)div\b', tmp):
-    depth += 1 if mm.group(1) == '' else -1
-    if depth == 0:
-        inp = tmp[:tmp.find('>', mm.end()) + 1]; break
-inp = balanced_remove(inp, '<div class="listening-area"')
-inp = inp.replace('<textarea title="정부24에 물어보세요" placeholder="정부24에 물어보세요" class="iw-ai-input"></textarea>',
-                  '<textarea title="AI에게 물어보기" placeholder="AI에게 물어보세요" class="iw-ai-input" rows="1"></textarea>')
-inp_inner = re.search(r'<div class="input-ai-area bottom">.*', inp, re.S).group(0)
-inp_inner = inp_inner[:inp_inner.rfind('</div>')]
-chat = '''
-        <div class="iw-ai-prompt-area ai-issuance-view demo-chat" aria-labelledby="aiChatTitle">
-          <div class="inner-prompt iw-ai-answer">
-            <h2 class="sr-only" id="aiChatTitle">정부24 AI국민비서 대화</h2>
-            <div class="iw-ai-answer-area ai-issuance-conversation" id="log" aria-live="polite"></div>
-          </div>
-          ''' + inp_inner + '''
-        </div>
-      '''
-d = inner_replace(open(SRC + 'UI-AI-LGA01M.html', encoding='utf-8').read(), '<div class="iw-ai-wrap">', chat)
-d = common(d, '정부24 AI국민비서 - 대화')
-d = d.replace('<body class="', '<body data-page="chat" class="', 1)
-open(OUT + 'chat.html', 'w', encoding='utf-8').write(d)
-print('ok')
 
 # ================= 혜택알리미 (서비스 상세 / 맞춤안내 결과) =================
 SRC3 = SRC.rstrip('/').rsplit('/',1)[0] + '/contents_3rd/'

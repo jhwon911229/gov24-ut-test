@@ -1,0 +1,31 @@
+/* 발급 문서 견본(시연용) : 정부24 AI국민비서 사용성 평가 견본 문서 형식 */
+.aih-paper{position:relative;box-sizing:border-box;width:595px;min-height:842px;padding:36px 34px 40px;background:#fff;color:#222;font-family:"Batang","바탕","BatangChe","Nanum Myeongjo","NanumMyeongjo","Noto Serif KR",serif;font-size:11px;line-height:1.5;overflow:hidden}
+.aih-paper *{box-sizing:border-box}
+.aih-paper .wm{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.aih-paper .wm span{position:absolute;font-family:"Pretendard GOV",Pretendard,sans-serif;font-size:30px;font-weight:800;color:rgba(230,70,70,.16);white-space:nowrap;transform:rotate(-30deg);letter-spacing:1px}
+.aih-paper > :not(.wm){position:relative;z-index:1}
+.aih-paper .p-tag{margin:0 0 4px;font-family:"Pretendard GOV",Pretendard,sans-serif;font-size:10px;font-weight:700;color:#d6433b}
+.aih-paper .p-top{display:flex;gap:12px;align-items:flex-start}
+.aih-paper .p-top .l{flex:1 1 auto;position:relative;padding-left:70px}
+.aih-paper .p-stamp-round{position:absolute;left:0;top:4px;width:62px;height:62px;border:2px solid #2e8b57;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#2e8b57;font-family:"Pretendard GOV",Pretendard,sans-serif;font-weight:800;font-size:9px;line-height:1.15;transform:rotate(-12deg);opacity:.9}
+.aih-paper .p-stamp-round b{font-size:13px}
+.aih-paper .p-stamp-round small{font-size:8px;font-weight:700}
+.aih-paper .p-no{margin:0 0 6px;font-size:10px;color:#333}
+.aih-paper h1{margin:0;font-size:27px;font-weight:700;letter-spacing:7px;color:#1b3f8b;line-height:1.3;white-space:nowrap!important;word-break:keep-all!important}
+.aih-paper h1 small{display:block;font-size:20px;letter-spacing:10px;font-weight:700;text-align:center;width:max-content}
+.aih-paper .p-cert{flex:0 0 190px;padding:10px 12px;background:#cfe0f5;font-size:10px;line-height:1.6;color:#222}
+.aih-paper .p-date{margin:18px 0 0;text-align:right;font-size:11px}
+.aih-paper .p-mayor{margin:4px 0 10px;text-align:right;font-size:17px;letter-spacing:3px;font-weight:700}
+.aih-paper table{width:100%;border-collapse:collapse;table-layout:fixed}
+.aih-paper th,.aih-paper td{border:1px solid #9aa5b8;padding:5px 6px;vertical-align:middle;word-break:keep-all;font-size:10.5px}
+.aih-paper th{background:#cfe0f5;font-weight:400;text-align:center}
+.aih-paper td.c{text-align:center}
+.aih-paper td.bl{background:#cfe0f5}
+.aih-paper tr.sp td{text-align:center;letter-spacing:4px;padding:3px}
+.aih-paper tr.empty td{height:22px}
+.aih-paper .p-sign{display:flex;justify-content:flex-end;align-items:center;gap:16px;margin:26px 0 0}
+.aih-paper .p-sign .nm{font-size:19px;letter-spacing:4px;font-weight:700}
+.aih-paper .p-stamp-sq{width:52px;height:52px;border:3px solid #d6433b;color:#d6433b;display:flex;align-items:center;justify-content:center;text-align:center;font-family:"Pretendard GOV",Pretendard,sans-serif;font-size:13px;font-weight:800;line-height:1.15;transform:rotate(-10deg);opacity:.9}
+.aih-paper .p-foot{margin:60px 0 0;font-family:"Pretendard GOV",Pretendard,sans-serif;font-size:9px;color:#333;line-height:1.6}
+.aih-paper .p-foot p{margin:0}
+.aih-paper.generic .p-list{margin:14px 0 0}

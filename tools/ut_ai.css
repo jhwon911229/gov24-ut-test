@@ -1,0 +1,10 @@
+/* [사용성 평가] 모바일 대화 화면 : 하단 정보 숨기고 입력창 하단 고정 */
+@media (max-width:1024px){
+ body:has(#snr_container.is-chat) #iw_footer,body:has(#snr_container.is-chat) .iw-btn-top{display:none!important}
+ #snr_container.is-chat .iw-ai-answer .input-ai-area.bottom{position:sticky;bottom:0;padding-bottom:calc(1.6rem + env(safe-area-inset-bottom))}
+ .iw-btn-top{display:none!important}
+}
+.ut-addr .employment-package-items{max-height:28rem;overflow:auto}
+.ut-addr .form-check{margin:.4rem 0}
+.ut-toast{position:fixed;left:50%;bottom:12rem;transform:translate(-50%,1.6rem);opacity:0;pointer-events:none;z-index:2147483002;background:rgba(30,33,36,.94);color:#fff;font-size:1.5rem;line-height:1.45;padding:1.2rem 1.8rem;border-radius:1.2rem;max-width:min(92vw,46rem);text-align:center;transition:opacity .2s,transform .2s;word-break:keep-all}
+.ut-toast.on{opacity:1;transform:translate(-50%,0)}

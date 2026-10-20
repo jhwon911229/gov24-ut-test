@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[가상 서비스] 정부24 - 발급 문서출력</title>
+<link rel="stylesheet" href="static/css/@pub/import.css">
+<link rel="stylesheet" href="static/css/@pub/aih-doc.css">
+<style>
+html,body{margin:0;background:#4b5563;font-size:16px}
+body{font-family:"Pretendard GOV",Pretendard,sans-serif;color:#1e2124;min-height:100vh;display:flex;flex-direction:column}
+.dp-notice{display:flex;align-items:center;gap:12px;padding:10px 16px;background:#1e2a3a;color:#fff;font-size:15px;font-weight:600;line-height:1.4}
+.dp-notice .tag{white-space:nowrap}
+.dp-notice .tag{padding:2px 8px;border-radius:4px;background:#ffd23f;color:#1e2124;font-weight:800}
+.dp-head{display:flex;align-items:center;gap:12px;padding:12px 16px;background:#fff}
+.dp-head .logo{width:110px;height:34px;background:url("static/images/layout/logo-header.svg") no-repeat left center/contain;flex:0 0 auto}
+.dp-head h1{margin:0;font-size:19px;font-weight:700;line-height:1.3}
+@media (max-width:600px){.dp-head h1{font-size:16px}.dp-tool button{min-width:36px;padding:0 10px;font-size:15px}.dp-tool .page{padding:6px 10px;font-size:14px}.dp-body{padding:10px}}
+.dp-tool{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:8px;padding:10px 16px;background:#1b3f8b;color:#fff}
+.dp-tool button{height:40px;min-width:40px;padding:0 14px;white-space:nowrap;border:1px solid rgba(255,255,255,.55);border-radius:6px;background:transparent;color:#fff;font-size:16px;font-weight:700;cursor:pointer}
+.dp-tool button.print{margin-left:auto;background:#fff;color:#1b3f8b;border-color:#fff;padding:0 20px}
+.dp-tool .page{margin-left:auto;padding:6px 16px;border-radius:6px;background:rgba(255,255,255,.18);font-size:16px;font-weight:700}
+.dp-tool .page + .print{margin-left:auto}
+.dp-body{flex:1;padding:16px;overflow:auto}
+.dp-sheet{position:relative;margin:0 auto;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.35)}
+.dp-sheet .aih-paper{position:absolute;left:0;top:0;transform-origin:0 0}
+@media print{@page{size:A4;margin:10mm}html,body{background:#fff}.dp-notice,.dp-head,.dp-tool{display:none!important}.dp-body{padding:0;overflow:visible}.dp-sheet{box-shadow:none;width:auto!important;height:auto!important}.dp-sheet .aih-paper{position:static;transform:none!important}}
+</style>
+<meta name="robots" content="noindex,nofollow">
+</head>
+<body>
+<div class="dp-notice"><span class="tag">가상 서비스</span><span>사용성 평가용 견본 문서입니다. 법적 효력이 없습니다.</span></div>
+<div class="dp-head"><span class="logo" aria-hidden="true"></span><h1 id="dpTitle">발급 문서출력</h1></div>
+<div class="dp-tool" role="toolbar" aria-label="문서 보기 도구">
+	<button type="button" data-z="in" aria-label="확대">＋</button><button type="button" data-z="out" aria-label="축소">－</button><button type="button" data-z="auto">자동</button>
+	<span class="page">1 / 1</span>
+	<button type="button" class="print" onclick="window.print()">인쇄</button>
+</div>
+<main class="dp-body"><div class="dp-sheet" id="dpSheet"></div></main>
+<script src="static/js/aih-doc.js"></script>
+<script>
+(function () {
+	var q = new URLSearchParams(location.search), doc = q.get('doc') || '주민등록표 등본';
+	document.title = '[시연용] 정부24 - ' + AihDoc.docTitle(doc);
+	document.getElementById('dpTitle').textContent = AihDoc.docTitle(doc);
+	var sheet = document.getElementById('dpSheet'); sheet.innerHTML = AihDoc.paperHtml(doc);
+	var paper = sheet.firstElementChild, mode = 'auto', zoom = 1;
+	function fit() {
+		var avail = sheet.parentNode.clientWidth - (window.innerWidth < 600 ? 20 : 32), r = mode === 'auto' ? Math.min(1.6, avail / 595) : zoom;
+		sheet.style.width = Math.round(595 * r) + 'px'; sheet.style.height = Math.round(paper.offsetHeight * r) + 'px'; paper.style.transform = 'scale(' + r + ')';
+		zoom = r;
+	}
+	document.querySelector('.dp-tool').addEventListener('click', function (e) {
+		var b = e.target.closest('[data-z]'); if (!b) return; var k = b.getAttribute('data-z');
+		if (k === 'auto') mode = 'auto'; else { mode = 'manual'; zoom = Math.max(.4, Math.min(3, zoom + (k === 'in' ? .15 : -.15))); }
+		fit();
+	});
+	window.addEventListener('resize', function () { if (mode === 'auto') fit(); });
+	fit(); setTimeout(fit, 300);
+})();
+</script>
+</body>
+</html>
