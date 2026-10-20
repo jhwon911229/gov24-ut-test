@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+	<title>[가상 서비스] 맞춤안내 조회 결과 | 혜택알리미</title>
+
+	<link rel="stylesheet" type="text/css" href="static/css/@pub/import.css" media="all">
+	<link rel="stylesheet" type="text/css" href="static/css/@pub/variable.css" media="all">
+	<link rel="stylesheet" type="text/css" href="static/css/@pub/layout.css" media="all">
+	<link rel="stylesheet" type="text/css" href="static/css/@pub/common.css" media="all">
+	<link rel="stylesheet" type="text/css" href="static/css/@pub/contents.css" media="all">
+	<link rel="stylesheet" type="text/css" href="static/css/@pub/inf_contents.css" media="all">
+	<link rel="stylesheet" type="text/css" href="static/css/@pub/main_legacy.css" media="all">
+	<link rel="stylesheet" type="text/css" href="static/css/@pub/main.css" media="all">
+	<link rel="stylesheet" type="text/css" href="static/css/@pub/print.css" media="all">
+
+	<script src="static/js/swiper-bundle.js"></script>
+	<script src="static/js/ui-script-layout.js" defer></script><!-- 퍼블리싱 js -->
+	<script src="static/js/ui-script.js" defer></script><!-- 퍼블리싱 js -->
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="demo/demo.css">
+</head>
+
+<body data-page="bn-list">
+<div class="demo-strip-bn"><span class="demo-badge">가상 서비스</span>시연용 가상 화면 · 예시 데이터</div>
+
+
+	<div id="__nuxt">
+		<div>
+
+
+			<!-- 2026-09-09 3차 : .bnf-container 추가  -->
+			<div class="iw-benefit-wrap bnf-container">
+
+				<header class="iw-benefit-header">
+					<!-- 2026-09-09 3차 : .iw-benefit-inner 추가 -->
+					<div class="iw-benefit-inner">
+						<!-- 2026-09-09 3차 : h1 변경 -->
+						<h1 class="iw-benefit-heading">
+							<img src="static/images/layout/logo-header.svg" alt="정부24" class="logo-benefit">
+							<span class="text">혜택알리미</span>
+						</h1>
+					</div>
+				</header>
+
+
+				<div class="iw-benefit-container">
+
+					<!-- 2026-09-09 3차 : .iw-benefit-inner 추가 -->
+					<div class="iw-benefit-inner">
+
+						<h2 class="sr-only">맞춤안내 조회 결과</h2>
+
+						<div class="section-1">
+							<div class="section-2">
+								<div class="my-benefit-title-wrap">
+									<div class="title-wrap">
+										<!-- 2026-06-26 3차 : class수정 -->
+										<h3 class="title xlg mo-xlg">
+											<em class="name">홍길동</em>님의 혜택현황
+										</h3>
+
+										<!-- 2026-09-21 3차 : OTT화면에선 사용안함 -->
+										<!-- <a href="" class="btn-txt">
+											<span class="txt">내 맞춤조건 설정</span>
+											<i class="iconset ico-benefit-setting" aria-hidden="true"></i>
+										</a> -->
+									</div>
+								</div>
+
+								<!-- 2026-06-25 3차 : tab 영역-->
+								<div class="section-2">
+									<!-- tab list -->
+									<div class="tab-area layer">
+										<div class="tab-list fill mo-type">
+											<ul>
+												<!-- 2026-10-07 3차 : tab 수정 -->
+												<li class="active">
+													<button type="button" class="btn-tab" id="totalTab01">신청 가능(6)</button>
+												</li>
+												<li>
+													<button type="button" class="btn-tab" id="totalTab02">확인 필요(10)</button>
+												</li>
+												<li>
+													<button type="button" class="btn-tab" id="totalTab03">받고 있음(3)</button>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<!-- //tab list -->
+
+									<!-- tab contents -->
+									<div class="section-4">
+										<div class="list-top-util mo-column">
+											<div>
+												<!-- 신청 가능 tab -->
+												<p class="fs-lg"><strong>신청할 수 있는 혜택이 <em class="text-primary">6</em>개 있어요.</strong></p>
+
+												<!-- 확인 필요 tab -->
+												<p class="fs-lg"><strong>확인 필요한 혜택이 <em class="text-primary">10</em>개 있어요.</strong></p>
+
+												<!-- 받고 있음 tab -->
+												<p class="fs-lg"><strong>받고 있는 혜택이 <em class="text-primary">3</em>개 있어요.</strong></p>
+											</div>
+											<div class="view-date-box">
+												<span class="sub-tit">조회 기준일</span>
+												<span>
+													<strong>20일 전</strong> (2026년 3월 9일)
+												</span>
+											</div>
+										</div>
+
+										<div class="bn-list-card col3">
+											<ul class="list" id="bnList"></ul>
+										</div>
+
+
+									</div>
+									<!-- //tab contents -->
+								</div>
+								<!-- // 2026-06-25 3차 : tab 영역-->
+
+							</div>
+
+
+						</div>
+
+
+					</div>
+					<!-- // 2026-09-09 3차 : .iw-benefit-inner 추가 -->
+
+				</div>
+
+			</div>
+
+			<!-- 2026-09-09 3차 : footer 추가 -->
+			<footer class="iw-benefit-footer">
+				<!-- 2026-10-07 3차 :footer 삭제  -->
+				<!-- <div class="iw-benefit-inner">
+					<div class="terms-btns">
+						<a href="" class="btn-txt sm text-secondary"><strong>개인정보처리방침</strong></a>
+						<a href="" class="btn-txt sm"><strong>이용약관</strong></a>
+					</div>
+				</div> -->
+
+				<div class="iw-benefit-footer-bottom">
+					<div class="iw-benefit-inner">
+						<strong class="d-block mb-4">혜택알리미 콜센터</strong>
+						<span class="d-block">1588-2188 (내선번호 3) </span>
+					</div>
+				</div>
+			</footer>
+			<!-- // 2026-09-09 3차 : footer 추가 -->
+
+		</div>
+	</div>
+
+	
+<script src="demo/data.js"></script>
+<script src="demo/demo-benefit.js"></script>
+</body>
+
+</html>

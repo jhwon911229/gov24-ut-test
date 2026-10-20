@@ -1,0 +1,58 @@
+@charset "utf-8";
+
+@media print {
+	body {-webkit-print-color-adjust:exact; print-color-adjust:exact;}
+    
+	#iw_wrap {min-height:auto;}
+
+	#iw_header {position:static; height:auto !important;}
+	#iw_header .header-util {display:none;}
+	#iw_header .header-top {padding-left:0; padding-right:0;}
+	#iw_header .header-bottom {display:none;}
+
+	#iw_container {flex:0;}
+
+	.breadcrumb-wrap {padding-left:0; padding-right:0;}
+
+	.tit-page-wrap {width:100%; padding-left:0; padding-right:0;}
+	.page-util-area {display:none;}
+	.conts-wrap {width:100%; padding-left:0; padding-right:0;}
+	
+	.lnb-wrap {width:100%; padding-left:0; padding-right:0;}
+	.lnb-wrap .lnb-section {display:none;}
+	.lnb-wrap .contents-section {width:100%;}
+
+	.iw-btn-top {display:none;}
+	#iw_footer {margin-top:0;}
+
+
+	/* 특정 modal 안에만 프린트 */
+	body.modal-print * {visibility:hidden !important; height:0 !important;}
+
+	body.modal-print .iw-modal.on,
+	body.modal-print .iw-modal.on * {visibility:visible !important; height:auto !important;}
+	body.modal-print .iw-modal.on {display:block; position:absolute; left:0; right:0; top:0; bottom:inherit;}
+	body.modal-print .iw-modal.on .modal-wrap {width:100%; height:auto; padding:0;}
+
+	body.modal-print .iw-modal.on .modal-wrap .modal-dialog {width:100%; max-height:none; min-height:auto; margin:0; padding:2.4rem; border-radius:0; background-color:#fff;}
+	body.modal-print .iw-modal.on .modal-wrap .modal-dialog .modal-header {padding:0 0 2.4rem 0;}
+	body.modal-print .iw-modal.on .modal-wrap .modal-dialog .modal-body {overflow:visible; overflow-y:auto; max-height:none; padding:0.8rem 0;}
+	body.modal-print .iw-modal.on .modal-wrap .modal-dialog .modal-footer {display:none;}
+	body.modal-print .iw-modal.on .modal-wrap .modal-dialog .btn-close-modal {display:none;}
+
+	/* 누리집이용안내 */
+	.nurizip-guide-list {display:block;}
+	.box-nurizip-guide .nurizip-guide-list > li {display:block;}
+	.box-nurizip-guide .img-box {display:block;}
+	.box-nurizip-guide .img-box img {display:block; width:100%; height:auto;}
+
+	/* 2025-11-27 : 생활가이드 상세 프린트시 좌측 영역 폰트 축소 */
+	.iw-life-style-detail .step-area {display:none;}
+	.iw-life-style-detail .step-area .list li a {gap:0 1rem;}
+	.iw-life-style-detail .step-area .list li a .num {width:2.2rem; height:2.2rem; font-size:1.2rem;}
+	.iw-life-style-detail .step-area .list li a .conts {padding:0.8rem 1rem;}
+	.iw-life-style-detail .step-area .list li a .conts .txt {font-size:1.3rem;}
+	.iw-life-style-detail .step-area .list li a .conts .badge-bundle {column-gap:0.4rem;}
+	.iw-life-style-detail .step-area .list li a .conts .badge-bundle .badge {font-size:1rem; height:1.8rem; padding:0 0.6rem;}
+	.iw-life-style-detail .contents-area  {flex: 1; width:auto !important;}
+}

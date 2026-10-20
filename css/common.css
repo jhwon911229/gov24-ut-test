@@ -1,0 +1,120 @@
+/* =========================================================
+   정부24 AI국민비서 · 사용성 평가 시연 (가상 서비스)
+   common.css — 토큰 · 리셋 · 헤더 · 푸터 · 공통 컴포넌트
+   ========================================================= */
+@font-face{font-family:"Pretendard GOV";font-weight:400;font-display:swap;src:url(../fonts/Pretendard-Regular.woff2) format("woff2")}
+@font-face{font-family:"Pretendard GOV";font-weight:500;font-display:swap;src:url(../fonts/Pretendard-Medium.woff2) format("woff2")}
+@font-face{font-family:"Pretendard GOV";font-weight:600;font-display:swap;src:url(../fonts/Pretendard-SemiBold.woff2) format("woff2")}
+@font-face{font-family:"Pretendard GOV";font-weight:700;font-display:swap;src:url(../fonts/Pretendard-Bold.woff2) format("woff2")}
+@font-face{font-family:"Pretendard GOV";font-weight:800;font-display:swap;src:url(../fonts/Pretendard-ExtraBold.woff2) format("woff2")}
+
+:root{
+  --c-primary:#256ef4;        /* KRDS primary 50 */
+  --c-primary-dark:#0b50d0;
+  --c-primary-weak:#ecf2fe;
+  --c-primary-line:#b1cefb;
+  --c-mint:#00a28a;
+  --c-mint-weak:#e5f6f2;
+  --c-text:#1e2124;
+  --c-text-sub:#464c53;
+  --c-text-weak:#6d7882;
+  --c-line:#dfe3ea;
+  --c-line-strong:#b1b8be;
+  --c-bg:#ffffff;
+  --c-bg-gray:#f4f5f6;
+  --c-bg-home:#eef2f7;
+  --c-bubble:#ecf2fe;
+  --c-card:#eef1f6;
+  --c-warn-bg:#fff6dc;
+  --c-warn-line:#ffd36b;
+  --c-warn-text:#7a5300;
+  --c-danger:#de3412;
+  --grad-ai:linear-gradient(90deg,#14b57f 0%,#1e8fd6 55%,#2a62f0 100%);
+  --grad-ai-diag:linear-gradient(135deg,#12b886 0%,#1b8fe0 60%,#2b5ff2 100%);
+  --shadow-input:0 6px 20px rgba(37,110,244,.12);
+  --radius:8px;
+  --container:1200px;
+  --font:"Pretendard GOV",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;font-family:var(--font);color:var(--c-text);background:var(--c-bg);font-size:17px;line-height:1.5;word-break:keep-all;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer;background:none;border:0;padding:0}
+input{font-family:inherit}
+.sr-only{position:absolute!important;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:absolute;left:-9999px;top:0;z-index:999;background:#000;color:#fff;padding:8px 16px}
+.skip:focus{left:0}
+:focus-visible{outline:3px solid #ffb800;outline-offset:2px}
+.container{max-width:var(--container);margin:0 auto;padding:0 24px}
+
+/* ---------- 가상 서비스 안내 띠 ---------- */
+.demo-strip{background:#2b2f36;color:#fff;font-size:14px;line-height:1.4}
+.demo-strip .container{display:flex;align-items:center;gap:10px;min-height:36px;padding-top:6px;padding-bottom:6px}
+.demo-strip .badge{flex:none;background:#ffb800;color:#1e2124;font-weight:800;font-size:12px;border-radius:4px;padding:2px 7px;letter-spacing:-.2px}
+.demo-strip a{margin-left:auto;flex:none;color:#ffd36b;text-decoration:underline;text-underline-offset:3px;font-weight:600}
+
+/* ---------- PC 헤더 ---------- */
+.hd-pc{border-bottom:1px solid var(--c-line);background:#fff}
+.hd-pc .top{display:flex;align-items:flex-end;justify-content:space-between;height:94px;padding-bottom:18px}
+.hd-pc .logo img{width:146px;height:auto}
+.hd-pc .util{display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.hd-pc .util-sm{display:flex;gap:0;font-size:14px;color:var(--c-text-sub)}
+.hd-pc .util-sm span{padding:0 14px;border-left:1px solid var(--c-line);line-height:14px}
+.hd-pc .util-sm span:first-child{border-left:0}
+.hd-pc .util-lg{display:flex;gap:28px;font-size:16px;font-weight:700}
+.hd-pc .util-lg span{display:inline-flex;align-items:center;gap:6px}
+.hd-pc .util-lg img{width:20px;height:20px}
+.hd-pc .gnb{border-top:1px solid var(--c-line)}
+.hd-pc .gnb ul{display:flex;gap:4px;list-style:none;margin:0;padding:0}
+.hd-pc .gnb li{padding:0 16px;height:52px;display:flex;align-items:center;gap:8px;font-size:18px;font-weight:700;color:var(--c-text)}
+.hd-pc .gnb li::after{content:"";width:8px;height:8px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:translateY(-3px) rotate(45deg);margin-left:6px}
+
+/* ---------- 모바일 헤더 ---------- */
+.hd-mo{display:none;position:sticky;top:0;z-index:40;background:#fff;height:56px;border-bottom:1px solid transparent}
+.hd-mo .in{display:flex;align-items:center;height:100%;padding:0 12px 0 8px}
+.hd-mo .back{width:40px;height:40px;display:grid;place-items:center}
+.hd-mo h1{font-size:19px;font-weight:600;margin:0 0 0 4px;letter-spacing:-.3px}
+.hd-mo .icons{margin-left:auto;display:flex;gap:6px}
+.hd-mo .icons span{width:36px;height:36px;display:grid;place-items:center}
+.hd-mo .icons img{width:28px;height:28px}
+
+/* ---------- breadcrumb ---------- */
+.bc{font-size:14px;color:var(--c-text-sub);display:flex;align-items:center;gap:10px;height:56px}
+.bc a{text-decoration:underline;text-underline-offset:3px}
+.bc .bc-home{display:inline-flex;align-items:center;gap:4px}
+
+/* ---------- 푸터 ---------- */
+.ft{background:var(--c-bg-gray);border-top:1px solid var(--c-line);padding:32px 0 40px;font-size:15px;color:var(--c-text-sub)}
+.ft .logo img{width:120px}
+.ft p{margin:14px 0 0}
+.ft strong{color:var(--c-text)}
+.ft .demo-note{margin-top:18px;padding:12px 14px;border-radius:8px;background:#fff;border:1px dashed var(--c-line-strong);font-size:14px;color:var(--c-text-sub)}
+.ft .copy{margin-top:16px;font-size:13px;color:var(--c-text-weak)}
+
+/* ---------- 토스트 ---------- */
+.toast{position:fixed;left:50%;bottom:110px;transform:translate(-50%,20px);opacity:0;pointer-events:none;z-index:200;
+  background:rgba(30,33,36,.94);color:#fff;font-size:15px;line-height:1.45;padding:12px 18px;border-radius:12px;max-width:min(92vw,460px);
+  transition:opacity .2s,transform .2s;text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.toast a{color:#9cc3ff;font-weight:700}
+
+/* ---------- 반응형 공통 ---------- */
+@media all{
+  .hd-pc,.bc-wrap{display:none}
+  .hd-mo{display:block}
+  .demo-strip{font-size:13px}
+  .demo-strip a{display:none}
+  .ft{padding:24px 0 120px}
+}
+
+/* ---------- 모바일 전용 앱 프레임 (PC에서도 모바일 화면으로 표시) ---------- */
+:root{--app-w:480px;--side:max(0px, calc(50vw - 240px))}
+html{background:#d9dee6}
+body{max-width:var(--app-w);margin:0 auto;min-height:100vh;box-shadow:0 0 0 1px #cfd5dd,0 12px 48px rgba(0,0,0,.10)}
+.composer{left:var(--side)!important;right:var(--side)!important}
+.fab-voice{left:calc(var(--side) + 16px)!important;right:calc(var(--side) + 16px)!important}
+.bpanel{left:var(--side)!important;right:var(--side)!important}
+.dim{padding-left:var(--side)!important;padding-right:var(--side)!important}

@@ -1,0 +1,218 @@
+.ico-stop::before,
+.ico-stop::after {
+    background-image: url('../images/ico-stop.svg');
+}
+.loading-indicator {
+    display: inline-block;
+    padding: 10px;
+}
+.loading-indicator > div {
+    opacity: 0.5;
+}
+.loading-indicator > div.active {
+    opacity: 1;
+}
+.loading-indicator > div.active .loading-text {
+    animation: blink-text 1.4s infinite;
+}
+.loading-indicator > div.active .dot1,
+.loading-indicator > div.active .dot2,
+.loading-indicator > div.active .dot3 {
+    animation: blink 1.4s infinite;
+    opacity: 0;
+}
+.loading-indicator > div.active .dot1 {
+    animation-delay: 0s;
+}
+.loading-indicator > div.active .dot2 {
+    animation-delay: 0.2s;
+}
+.loading-indicator > div.active .dot3 {
+    animation-delay: 0.4s;
+}
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+@keyframes blink-text {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
+.model-selector .toggle-container {
+    display: inline-flex;
+    position: relative;
+    width: 120px;
+    height: 30px;
+    background: #eee;
+    border-radius: 15px;
+    overflow: hidden;
+}
+.model-selector .toggle-container input[type='radio'] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+}
+.model-selector .toggle-container label {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    width: 60px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+    transition: color 0.3s ease;
+    user-select: none;
+}
+.model-selector .toggle-container .slider {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 30px;
+    background: #007bff;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+.model-selector #model-gpt:checked + label[for='model-gpt'] {
+    color: white;
+}
+.model-selector #model-gauss:checked + label[for='model-gauss'] {
+    color: white;
+}
+.model-selector #model-gpt:checked ~ .slider {
+    transform: translateX(0);
+}
+.model-selector #model-gauss:checked ~ .slider {
+    transform: translateX(60px);
+}
+
+/* For QA form */
+.model-selector #model-qa-gpt:checked ~ .slider {
+    transform: translateX(0);
+}
+.model-selector #model-qa-gauss:checked ~ .slider {
+    transform: translateX(60px);
+}
+.model-selector #model-qa-gpt:checked + label,
+.model-selector #model-qa-gauss:checked + label {
+    color: white;
+}
+
+/* 게시글 영역 */
+/*.iw-ai-news-area ul.list {display: flex;flex-wrap: wrap;gap: 1.6rem;margin: 0;padding: 0;list-style: none;}*/
+/*.iw-ai-news-area ul.list li {flex: 0 0 auto;width: 260px;height: 215.5px;border: 1px solid var(--iw-ad-gray-20);border-radius: 1.2rem;background: #fff;overflow: hidden;box-shadow: 0 2px 6px rgba(0,0,0,0.05);}*/
+
+/* 버튼 전체를 카드로 */
+.iw-ai-news-area .btn-news {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+    padding: 1.6rem;
+    text-align: left;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* 제목: 1줄 말줄임 */
+.iw-ai-news-area .btn-news .tit {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 1줄 제한 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 700;
+    font-size: 1.6rem;
+    margin-bottom: 0.8rem;
+    color: var(--iw-ad-gray-90);
+    width: 100%;
+}
+
+/* 본문: 3줄 말줄임 */
+.iw-ai-news-area .btn-news .txt {
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* 3줄 제한 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    color: var(--iw-ad-gray-70);
+    white-space: normal;
+    width: 100%;
+}
+
+/* 이미지 토큰 */
+.iw-ai-news-area .btn-news .img-token {
+    font-weight: 700;
+    color: var(--iw-ad-secondary);
+}
+
+/* 모달 안의 이미지 크기 자동 맞춤 */
+.ad-modal .ad-modal-body img,
+.iw-ai-modal .modal-body img {
+    max-width: 100%;
+    max-height: 80vh; /* 화면 높이의 80%까지만 */
+    height: auto;
+    width: auto;
+    display: block;
+    object-fit: contain; /* 비율 유지 */
+}
+
+/* chatView의 model-selector를 input-ai-area bottom 위에 배치하고 input-ai의 우측 상단에 위치 */
+.model-selector-wrapper {
+    position: relative;
+    margin-bottom: 6px;
+    text-align: center;
+}
+
+/* PC 버전 - iw-al-wrap 내부 (iw-ai.css의 fixed 스타일이 우선 적용됨) */
+.iw-al-wrap .iw-ai-answer .model-selector-wrapper {
+    text-align: right; /* PC에서는 우측 정렬 */
+}
+
+/* 모바일 버전 - iw-ai-prompt-area-ad 내부 (iw-ai.css의 fixed 스타일이 우선 적용됨) */
+.iw-ai-prompt-area-ad .iw-ai-answer .model-selector-wrapper {
+    text-align: right; /* 모바일에서는 중앙 정렬 */
+}
+
+/* 반응형 미디어 쿼리 - 일반적인 경우 (fixed가 아닌 경우) */
+@media (max-width: 768px) {
+    .model-selector-wrapper {
+        padding: 0 2.4rem;
+        text-align: center;
+    }
+
+    .iw-al-wrap .model-selector-wrapper {
+        padding: 0 2.4rem;
+        text-align: center;
+    }
+}
+
+.ai-panel-body .markdown-body li {
+    word-break: break-all; /* 모든 문자에서 줄바꿈 허용 */
+}
