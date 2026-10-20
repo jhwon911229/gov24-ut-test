@@ -25,7 +25,7 @@
   .parts{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:14px}
   .part a{display:flex;align-items:center;gap:18px;background:#fff;border-radius:16px;padding:22px 22px;text-decoration:none;border:1px solid #e3e8ef;transition:box-shadow .15s,border-color .15s,transform .15s}
   .part a:hover{border-color:var(--c-primary-line);box-shadow:0 8px 24px rgba(37,110,244,.12);transform:translateY(-1px)}
-  .part .no{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:24px;background:var(--grad-ai-diag)}
+  .part .no{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:30px;line-height:1;background:var(--grad-ai-diag)}
   .part .tx{flex:1;min-width:0}
   .part .tt{display:flex;align-items:center;flex-wrap:wrap;gap:8px;font-size:21px;font-weight:700;letter-spacing:-.4px}
   .part .tag{font-size:12px;font-weight:700;border-radius:4px;padding:2px 7px;background:var(--c-primary-weak);color:#0b50d0}
@@ -43,7 +43,7 @@
     .hub-hero h1{font-size:26px}
     .hub-hero p{font-size:16px}
     .part a{padding:18px 16px;gap:14px;align-items:center}
-    .part .no{width:42px;height:42px;font-size:17px;border-radius:12px}
+    .part .no{width:52px;height:52px;font-size:28px;border-radius:14px}
     .part .tt{font-size:18px}
     .part img.ch{display:none}
     .part .arr{width:32px;height:32px}
@@ -52,7 +52,7 @@
 </head>
 <body>
 <a class="skip" href="#main">본문 바로가기</a>
-<div class="demo-strip" role="note"><div class="container"><span class="badge">가상 서비스</span><span>실제 민원이 접수되지 않습니다.</span></div></div>
+<div class="demo-strip" role="note"><div class="container"><span class="badge">가상 서비스</span></div></div>
 <header class="hub-hd"><div class="container"><img src="img/logo-gov24.png" alt="정부24 (시연)"><span>AI국민비서 사용성 평가</span></div></header>
 
 <main id="main" class="hub">
@@ -66,7 +66,7 @@
   <ol class="parts">
     <li class="part">
       <a href="https://plus.gov.kr" target="_blank" rel="noopener">
-        <span class="no">①</span>
+        <span class="no">1</span>
         <span class="tx">
           <span class="tt">기존 정부24<span class="tag ext">새 창</span></span>
         </span>
@@ -76,7 +76,7 @@
     </li>
     <li class="part">
       <a href="https://voice.myvoicedemos.com/" target="_blank" rel="noopener">
-        <span class="no">②</span>
+        <span class="no">2</span>
         <span class="tx">
           <span class="tt">음성 서비스<span class="tag ext">새 창</span></span>
         </span>
@@ -86,9 +86,9 @@
     </li>
     <li class="part">
       <a href="ai.html?mode=minwon">
-        <span class="no">③</span>
+        <span class="no">3</span>
         <span class="tx">
-          <span class="tt">대화형 민원 발급<span class="tag">AI국민비서</span></span>
+          <span class="tt">대화형 민원 발급</span>
         </span>
         
         <span class="arr" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
@@ -96,9 +96,9 @@
     </li>
     <li class="part">
       <a href="ai.html?mode=benefit">
-        <span class="no">④</span>
+        <span class="no">4</span>
         <span class="tx">
-          <span class="tt">대화형 혜택 조회<span class="tag">AI국민비서</span></span>
+          <span class="tt">대화형 혜택 조회</span>
         </span>
         <img class="ch" src="img/card-benefit.png" alt="">
         <span class="arr" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
