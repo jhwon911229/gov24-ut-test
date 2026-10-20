@@ -42,34 +42,25 @@
     .hub-hero img{width:84px}
     .hub-hero h1{font-size:26px}
     .hub-hero p{font-size:16px}
-    .part a{padding:18px 16px;gap:14px;align-items:flex-start}
+    .part a{padding:18px 16px;gap:14px;align-items:center}
     .part .no{width:42px;height:42px;font-size:17px;border-radius:12px}
     .part .tt{font-size:18px}
-    .part img.ch,.part .arr{display:none}
+    .part img.ch{display:none}
+    .part .arr{width:32px;height:32px}
   }
 </style>
 </head>
 <body>
 <a class="skip" href="#main">본문 바로가기</a>
-<div class="demo-strip" role="note"><div class="container"><span class="badge">가상 서비스</span><span>사용성 평가용 시연 화면입니다. 실제 민원이 접수되지 않습니다.</span></div></div>
+<div class="demo-strip" role="note"><div class="container"><span class="badge">가상 서비스</span><span>실제 민원이 접수되지 않습니다.</span></div></div>
 <header class="hub-hd"><div class="container"><img src="img/logo-gov24.png" alt="정부24 (시연)"><span>AI국민비서 사용성 평가</span></div></header>
 
 <main id="main" class="hub">
   <div class="hub-hero">
     <div>
-      <span class="eyebrow">1차 사용성 평가 · 시연용</span>
-      <h1>말로, 대화로 하는<br><em>정부24 AI국민비서</em> 체험하기</h1>
-      <p>진행 요원의 안내에 따라 ①~④를 순서대로 체험하고, 마지막에 설문에 답해 주세요.</p>
+      <h1><em>정부24 AI국민비서</em><br>체험하기</h1>
     </div>
     <img src="img/gubbi-hero.png" alt="">
-  </div>
-
-  <div class="notice" role="note">
-    <strong>꼭 확인해 주세요 — 이 화면은 가상 서비스입니다.</strong>
-    <ul>
-      <li>이름·주소·혜택 정보는 모두 예시이며, 실제 인증·발급·신청은 이루어지지 않습니다.</li>
-      <li>본인인증 단계에서도 개인정보를 입력하지 않습니다. 버튼만 누르면 다음 단계로 넘어갑니다.</li>
-    </ul>
   </div>
 
   <ol class="parts">
@@ -77,9 +68,7 @@
       <a href="https://plus.gov.kr" target="_blank" rel="noopener">
         <span class="no">①</span>
         <span class="tx">
-          <span class="tt">기존 정부24<span class="tag ext">새 창 · 실제 정부24</span></span>
-          <p class="ds">메뉴에서 찾아 들어가는 기존 방식으로 주민등록등본을 찾아보세요.</p>
-          <p class="ex">자주 찾는 서비스 → 주민등록등본(초본)</p>
+          <span class="tt">기존 정부24<span class="tag ext">새 창</span></span>
         </span>
         
         <span class="arr" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5"/></svg></span>
@@ -89,9 +78,7 @@
       <a href="https://voice.myvoicedemos.com/" target="_blank" rel="noopener">
         <span class="no">②</span>
         <span class="tx">
-          <span class="tt">음성 서비스 – 말로 묻고 듣기<span class="tag ext">새 창 · 음성 시연</span></span>
-          <p class="ds">[마이크로 입력하기]를 한 번 누르고 말해 보세요. 말을 멈추면 자동으로 알아듣고 소리로 답해요. 무음 자동 종료는 <strong>10초</strong>로 진행합니다(☰ 메뉴에서 3·5·10초 선택).</p>
-          <p class="ex">“주민등록등본은 어디에 쓰여?” “유아학비 지원 알려줘” 물어보기</p>
+          <span class="tt">음성 서비스<span class="tag ext">새 창</span></span>
         </span>
         <img class="ch" src="img/card-voice.png" alt="">
         <span class="arr" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5"/></svg></span>
@@ -102,8 +89,6 @@
         <span class="no">③</span>
         <span class="tx">
           <span class="tt">대화형 민원 발급<span class="tag">AI국민비서</span></span>
-          <p class="ds">AI국민비서와 대화하며 주민등록등본을 발급해 보세요.</p>
-          <p class="ex">“주민등록등본 발급해줘” 입력하기</p>
         </span>
         
         <span class="arr" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
@@ -114,15 +99,12 @@
         <span class="no">④</span>
         <span class="tx">
           <span class="tt">대화형 혜택 조회<span class="tag">AI국민비서</span></span>
-          <p class="ds">내가 받을 수 있는 혜택을 대화로 찾아보세요. 지역·연령을 덧붙이면 더 정확해져요.</p>
-          <p class="ex">“내가 받을 수 있는 혜택 알려줘” 입력하기</p>
         </span>
         <img class="ch" src="img/card-benefit.png" alt="">
         <span class="arr" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
     </li>
   </ol>
-  <p class="hub-ft">범정부 서비스 통합창구 구축(3차) 사업단 · 정부24 AI국민비서 1차 사용성 평가(2026. 10. 23.)</p>
 </main>
 </body>
 </html>
