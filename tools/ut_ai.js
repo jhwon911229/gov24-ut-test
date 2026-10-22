@@ -126,3 +126,56 @@
 		if (!t) return; e.preventDefault(); e.stopImmediatePropagation();
 		if (t.classList.contains('ico-logout')) { if (window.DemoSession) DemoSession.set(false); } else openLogin();
 	}, true);
+
+	/* ----------------------------------------------------------------------
+	   [사용성 평가] 답변 표시 속도 : 글자는 타자 치듯, 나머지는 차례로 나타남
+	   + 자동 스크롤은 방금 한 질문(또는 새 답변 시작)이 화면 위에 남는 데까지만
+	   ---------------------------------------------------------------------- */
+	var RM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+	var anchor = null, Q = [], qBusy = false;
+	function headOff() { var h = $('.aih-mohead'), b = $('#demoProtoBanner'), o = 0; if (b) o = b.getBoundingClientRect().bottom; if (h && h.offsetParent !== null) o = Math.max(o, h.getBoundingClientRect().bottom); return o + 12; }
+	function scrollBottom() {
+		clearTimeout(scrollBottom.t);
+		scrollBottom.t = setTimeout(function () {
+			var max = document.documentElement.scrollHeight - window.innerHeight, y = max;
+			if (anchor && anchor.isConnected) y = Math.min(max, anchor.getBoundingClientRect().top + window.pageYOffset - headOff());
+			if (y > window.pageYOffset + 2) window.scrollTo({ top: y, behavior: 'smooth' });
+		}, 80);
+	}
+	function isText(n) { return n.tagName === 'P' && !n.querySelector('a,button,input,img') && n.textContent.trim().length > 0; }
+	function typeIt(n, done) {
+		var tn = [], w = document.createTreeWalker(n, NodeFilter.SHOW_TEXT), t; while ((t = w.nextNode())) tn.push([t, t.nodeValue]);
+		var total = tn.reduce(function (s, x) { return s + x[1].length; }, 0); if (!total) { done(); return; }
+		var per = Math.max(1, Math.ceil(total / 70)), ms = 24, k = 0, i = 0, c = 0;   // 최대 약 1.7초 안에 끝나도록
+		tn.forEach(function (x) { x[0].nodeValue = ''; });
+		n.classList.remove('ut-q');
+		(function tick() {
+			var left = per;
+			while (left > 0 && i < tn.length) { var full = tn[i][1], take = Math.min(left, full.length - c); c += take; left -= take; tn[i][0].nodeValue = full.slice(0, c); if (c >= full.length) { i++; c = 0; } }
+			k++; if (i < tn.length) setTimeout(tick, ms); else done();
+		})();
+	}
+	function runQ() {
+		if (qBusy) return; var n = Q.shift(); if (!n) return;
+		if (!n.isConnected) { runQ(); return; }
+		qBusy = true;
+		var next = function () { qBusy = false; runQ(); };
+		if (isText(n)) typeIt(n, function () { setTimeout(next, 120); });
+		else { n.classList.remove('ut-q'); n.classList.add('ut-in'); setTimeout(next, 220); }
+	}
+	if (!RM) new MutationObserver(function (ms) {
+		ms.forEach(function (m) {
+			if (m.target === log) {
+				m.addedNodes.forEach(function (n) {
+					if (n.nodeType !== 1) return;
+					if (n.classList.contains('iw-ai-my-q')) { anchor = n; Q.forEach(function (x) { x.classList.remove('ut-q'); }); Q = []; }   // 새 질문 : 남은 답변은 바로 표시
+					else if (n.classList.contains('iw-ai-answer')) { var p = n.previousElementSibling; if (!p || !p.classList.contains('iw-ai-title-wrap')) anchor = n; }
+				});
+				return;
+			}
+			if (m.target.classList && m.target.classList.contains('iw-ai-answer')) {
+				m.addedNodes.forEach(function (n) { if (n.nodeType !== 1 || n.classList.contains('aih-thinking')) return; n.classList.add('ut-q'); Q.push(n); });
+				runQ();
+			}
+		});
+	}).observe(log, { childList: true, subtree: true });

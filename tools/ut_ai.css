@@ -125,3 +125,8 @@
 .ut-toast{z-index:2147483200!important}
 @media (min-width:1025px){.ut-login .ut-step{padding-top:3.6rem}.ut-lhead,.ut-shead{top:3.6rem}.ut-login{background:rgba(0,0,0,.55)}.ut-login .ut-step{background:#fff;margin:6rem auto;min-height:0;padding-top:0;border-radius:1.2rem;overflow:hidden}.ut-lhead,.ut-shead{position:static}}
 @media (max-width:340px){.ut-lcards{gap:1rem}.ut-lcard{padding:1.6rem 1.4rem;gap:1.6rem;min-height:11.6rem}.ut-lcard span{font-size:1.5rem}.ut-certs{gap:1.2rem 0}.ut-cert .lg{width:4.2rem;height:4.2rem;font-size:1.05rem}.ut-cert .nm{font-size:1.1rem}.ut-form{grid-template-columns:8rem 1fr}.ut-ltit{font-size:2.3rem}}
+
+/* 답변 차례로 나타내기 */
+.iw-ai-answer > .ut-q{display:none!important}
+.iw-ai-answer > .ut-in{animation:utIn .28s ease-out both}
+@keyframes utIn{from{opacity:0;transform:translateY(.6rem)}to{opacity:1;transform:none}}
