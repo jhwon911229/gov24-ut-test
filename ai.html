@@ -706,9 +706,12 @@ body.v24-voice-open{overflow:hidden}
 .ut-stit2{font-size:1.6rem;font-weight:700;margin:.4rem 0 1.2rem}
 .ut-form{display:grid;grid-template-columns:9.6rem 1fr;border-top:2px solid #8a949e}
 .ut-form dt,.ut-form dd{display:flex;align-items:center;min-height:5.6rem;border-bottom:1px solid #d5d8dc;font-size:1.5rem}
+.ut-form dt label{font:inherit;color:inherit}
 .ut-form dt{padding-left:1.2rem;background:#f4f5f6;color:#33363d}
 .ut-form dd{padding:.6rem;gap:.4rem;margin:0}
-.ut-form input,.ut-form select{width:100%;min-width:0;height:4.2rem;border:1px solid #cdd1d5;border-radius:.2rem;padding:0 1rem;font:inherit;font-size:1.5rem;color:#6d7882;background:#fafbfb}
+.ut-form input,.ut-form select{width:100%;min-width:0;height:4.2rem;border:1px solid #cdd1d5;border-radius:.2rem;padding:0 1rem;font:inherit;font-size:1.5rem;color:#1e2124;background:#fff}
+.ut-form input::placeholder{color:#a2a9b0}
+.ut-form input:focus,.ut-form select:focus{outline:2px solid #256ef4;outline-offset:-1px}
 .ut-form .ph select{width:7.2rem;flex:none;color:#1e2124}
 .ut-fake{margin-top:.8rem;font-size:1.3rem;color:#6d7882}
 .ut-agree-h{display:flex;align-items:center;justify-content:space-between;margin-top:2.8rem}
@@ -723,7 +726,7 @@ body.v24-voice-open{overflow:hidden}
 .ut-sbtn{position:sticky;bottom:0;display:flex;height:6rem;box-shadow:0 -1px 0 #e6e8ea}
 .ut-sbtn button{flex:1;font-size:1.7rem;font-weight:700;background:#fff!important}
 .ut-sbtn .go{flex:2.3;background:#0098cf!important;color:#fff!important}
-.ut-sbtn .go:disabled{background:#b9c6cf!important;cursor:default}
+.ut-sbtn .go.off{background:#b9c6cf!important}
 .ut-wbody{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2.4rem}
 .ut-wbody .lg{display:block;width:7.2rem;height:7.2rem;border-radius:1.6rem;margin-bottom:2.4rem;animation:utPulse 1.4s ease-in-out infinite}
 .ut-wbody .lg.t1{color:#3c1e1e}.ut-wbody .lg.t2{color:#1f9be0}.ut-wbody .lg.t3{color:#e4262a}
@@ -2320,18 +2323,24 @@ body.v24-voice-open{overflow:hidden}
 			'<section class="ut-step ut-simple"><header class="ut-shead"><button type="button" class="ut-back w" data-lm="back" aria-label="이전"></button><h2>간편인증</h2><span class="ut-g24">정부24</span></header>' +
 			'<div class="ut-sbody"><h4 class="ut-stit"><span class="ic c"></span>민간 인증서</h4><div class="ut-certs">' + tiles + '</div>' +
 			'<h4 class="ut-stit"><span class="ic i"></span>모바일 신분증</h4><div class="ut-certs"><button type="button" class="ut-cert" data-lm="soon">' + utLogo('mid') + '<span class="nm">모바일신분증</span></button></div>' +
-			'<h4 class="ut-stit2">본인인증 정보 입력</h4><dl class="ut-form"><dt>이름</dt><dd><input type="text" value="홍길동" readonly aria-label="이름"></dd><dt>생년월일</dt><dd><input type="text" value="19900101" readonly aria-label="생년월일"></dd>' +
-			'<dt>휴대폰 번호</dt><dd class="ph"><select disabled aria-label="통신사 번호"><option>010</option></select><input type="text" value="12345678" readonly aria-label="휴대폰 번호"></dd></dl><p class="ut-fake">시연용 가상 정보가 입력되어 있어요.</p>' +
+			'<h4 class="ut-stit2">본인인증 정보 입력</h4><dl class="ut-form"><dt><label for="utNm">이름</label></dt><dd><input type="text" id="utNm" class="uf" placeholder="홍길동" autocomplete="off" maxlength="20"></dd>' +
+			'<dt><label for="utBd">생년월일</label></dt><dd><input type="text" id="utBd" class="uf" placeholder="19900101" inputmode="numeric" autocomplete="off" maxlength="8"></dd>' +
+			'<dt><label for="utPh">휴대폰 번호</label></dt><dd class="ph"><select aria-label="휴대폰 앞자리"><option>010</option><option>011</option><option>016</option><option>017</option><option>018</option><option>019</option></select><input type="text" id="utPh" class="uf" placeholder="12341234" inputmode="numeric" autocomplete="off" maxlength="8" aria-label="휴대폰 번호 뒷자리"></dd></dl>' +
+			'<p class="ut-fake">입력한 정보는 저장되거나 전송되지 않아요. 가상 정보를 입력해도 돼요.</p>' +
 			'<div class="ut-agree-h"><h4 class="ut-stit2">서비스 이용에 대한 동의</h4><label class="ut-all"><input type="checkbox" data-lm="all"> 전체동의</label></div>' +
 			'<ul class="ut-agree">' + ['개인정보 이용 동의', '제3자정보제공동의', '고유식별정보처리동의'].map(function (t) { return '<li><label><input type="checkbox" class="ag"> ' + t + '</label><button type="button" data-lm="soon">보기</button></li>'; }).join('') + '</ul></div>' +
-			'<div class="ut-sbtn"><button type="button" data-lm="close">닫기</button><button type="button" class="go" data-lm="req" disabled>인증 요청</button></div></section>' +
+			'<div class="ut-sbtn"><button type="button" data-lm="close">닫기</button><button type="button" class="go off" data-lm="req">인증 요청</button></div></section>' +
 			// ③ 앱 인증 대기
 			'<section class="ut-step ut-wait"><header class="ut-shead"><h2>간편인증</h2><span class="ut-g24">정부24</span></header>' +
 			'<div class="ut-wbody"><img class="lg" src="" alt=""><p class="t"><strong class="nm"></strong> 앱에서<br>인증을 진행해 주세요.</p><p class="s">휴대폰으로 받은 인증 요청을 확인하고,<br>앱에서 인증을 마친 뒤 아래 <b>인증 완료</b>를 눌러 주세요.</p><p class="ut-fake">시연용 · 실제 인증 요청은 보내지 않아요.</p></div>' +
 			'<div class="ut-sbtn"><button type="button" data-lm="back2">취소</button><button type="button" class="go" data-lm="done">인증 완료</button></div></section></div>');
 		document.body.appendChild(LM);
 		var sel = -1;
-		function canGo() { $('[data-lm=req]', LM).disabled = !(sel > -1 && $$('.ag', LM).every(function (c) { return c.checked; })); }
+		function formOk() { var n = $('#utNm', LM).value.trim(), d = $('#utBd', LM).value, h = $('#utPh', LM).value; return n.length >= 2 && /^(19|20)\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])$/.test(d) && /^\d{7,8}$/.test(h); }
+		function agOk() { return $$('.ag', LM).every(function (c) { return c.checked; }); }
+		function canGo() { $('[data-lm=req]', LM).classList.toggle('off', !(sel > -1 && formOk() && agOk())); }
+		function why() { return sel < 0 ? '인증서를 선택해 주세요.' : $('#utNm', LM).value.trim().length < 2 ? '이름을 입력해 주세요.' : !/^(19|20)\d{6}$/.test($('#utBd', LM).value) ? '생년월일 8자리를 입력해 주세요. (예: 19900101)' : !/^\d{7,8}$/.test($('#utPh', LM).value) ? '휴대폰 번호를 입력해 주세요.' : !agOk() ? '서비스 이용에 모두 동의해 주세요.' : ''; }
+		LM.addEventListener('input', function (e) { if (e.target.id === 'utBd' || e.target.id === 'utPh') e.target.value = e.target.value.replace(/\D/g, ''); canGo(); });
 		LM.addEventListener('change', function (e) {
 			if (e.target.matches('[data-lm=all]')) $$('.ag', LM).forEach(function (c) { c.checked = e.target.checked; });
 			else if (e.target.classList.contains('ag')) $('[data-lm=all]', LM).checked = $$('.ag', LM).every(function (c) { return c.checked; });
@@ -2346,14 +2355,14 @@ body.v24-voice-open{overflow:hidden}
 			else if (k === 'back') { LM.setAttribute('data-step', 'type'); LM.scrollTop = 0; }
 			else if (k === 'back2') { LM.setAttribute('data-step', 'simple'); }
 			else if (k === 'cert') { sel = +t.getAttribute('data-i'); $$('.ut-cert[data-lm=cert]', LM).forEach(function (b, i) { b.classList.toggle('on', i === sel); b.setAttribute('aria-pressed', String(i === sel)); }); canGo(); }
-			else if (k === 'req') { if (t.disabled) return; var c = UT_CERTS[sel]; $('.ut-wait .lg', LM).src = 'static/images/login/cert-' + c[1] + '.png'; $('.ut-wait .nm', LM).textContent = c[0]; LM.setAttribute('data-step', 'wait'); LM.scrollTop = 0; }
+			else if (k === 'req') { if (t.classList.contains('off')) { toast(why() || '생년월일을 다시 확인해 주세요.'); return; } var c = UT_CERTS[sel]; $('.ut-wait .lg', LM).src = 'static/images/login/cert-' + c[1] + '.png'; $('.ut-wait .nm', LM).textContent = c[0]; LM.setAttribute('data-step', 'wait'); LM.scrollTop = 0; }
 			else if (k === 'done') { closeLogin(UT_CERTS[sel][0]); }
 		});
 		return LM;
 	}
 	function openLogin() {
 		var m = loginModal(); m.setAttribute('data-step', 'type');
-		$$('.ut-cert', m).forEach(function (b) { b.classList.remove('on'); }); $$('input[type=checkbox]', m).forEach(function (c) { c.checked = false; }); $('[data-lm=req]', m).disabled = true;
+		$$('.ut-cert', m).forEach(function (b) { b.classList.remove('on'); }); $$('input[type=checkbox]', m).forEach(function (c) { c.checked = false; }); $$('.uf', m).forEach(function (i) { i.value = ''; }); $('.ut-form select', m).selectedIndex = 0; $('[data-lm=req]', m).classList.add('off');
 		m.classList.add('on'); m.scrollTop = 0; document.body.classList.add('overflow');
 	}
 	// 헤더 로그인 버튼도 같은 로그인 프로세스로(로그아웃은 세션만 해제)
