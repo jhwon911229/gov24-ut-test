@@ -51,3 +51,71 @@
 		}
 		fit(); window.addEventListener('resize', fit);
 	})();
+
+	/* ----------------------------------------------------------------------
+	   [사용성 평가] 로그인 : Figma 08. 회원계정 로그인 프로세스
+	   로그인 방식 선택(MO_UI-PT-II01M_로그인방식선택_개인) → 간편인증(UI-PT-IAA03M) → 앱 인증 후 [인증 완료]
+	   · 시연은 간편 인증만 진행 · 본인인증 정보는 가상 정보(홍길동)로 미리 채움(입력 불가)
+	   ---------------------------------------------------------------------- */
+	var UT_CERTS = [['카카오뱅크', '#FFE300', 'B', 1], ['국민인증서', '#FFCC4D', 'KB', 1], ['뱅크샐러드', '#FFFFFF', 'BS', 2], ['카카오톡', '#FEE500', 'TALK', 1],
+		['삼성패스', '#1F4AC8', 'Pass'], ['NH인증서', '#1653D9', 'NH'], ['페이코', '#FFFFFF', 'PAYCO', 3], ['우리인증서', '#FFFFFF', 'WON', 2],
+		['네이버', '#03C75A', 'N'], ['하나인증서', '#00857C', '하나'], ['드림인증', '#1953C4', 'D'], ['통신사PASS', '#F2334B', 'PASS']];
+	var UT_LT = [
+		['통합로그인', '한 번에 인증하고<br>모든 서비스 이용하기', [['mobile', '모바일 신분증'], ['simple', '간편 인증'], ['joint', '공동 인증서'], ['finance', '금융 인증서']]],
+		['생체인증', '빠르게 인증하고 서비스 이용하기', [['bio', '생체인증'], ['pin', '간편비밀번호'], ['pattern', '패턴']]],
+		['간편로그인', '간단히 로그인하고<br>필요 시 추가 인증하기', [['id', '아이디 로그인'], ['guest', '비회원 로그인<br>(개인)']]]];
+	function loginModal() {
+		if (LM) return LM;
+		var tiles = UT_CERTS.map(function (c, i) { return '<button type="button" class="ut-cert" data-lm="cert" data-i="' + i + '" aria-pressed="false"><span class="lg t' + (c[3] || 0) + '" style="background:' + c[1] + '" aria-hidden="true">' + c[2] + '</span><span class="nm">' + c[0] + '</span></button>'; }).join('');
+		LM = el('<div class="ut-login" id="utLogin" role="dialog" aria-modal="true" aria-label="로그인" data-step="type">' +
+			// ① 로그인 방식 선택
+			'<section class="ut-step ut-type"><header class="ut-lhead"><button type="button" class="ut-back" data-lm="close" aria-label="이전"></button><h2>로그인</h2></header>' +
+			'<div class="ut-lbody"><h3 class="ut-ltit">로그인 방식을<br>선택해 주세요.</h3><div class="ut-ltab" role="tablist"><button type="button" role="tab" aria-selected="true" class="on">개인</button><button type="button" role="tab" aria-selected="false" data-lm="soon">법인</button></div>' +
+			UT_LT.map(function (g) { return '<div class="ut-lgrp"><h4>' + g[1] + '</h4><div class="ut-lcards">' + g[2].map(function (t) { return '<button type="button" class="ut-lcard" data-lm="' + (t[0] === 'simple' ? 'simple' : 'soon') + '"><img src="static/images/login/ico-' + t[0] + '.png" alt=""><span>' + t[1] + '</span></button>'; }).join('') + '</div></div>'; }).join('') +
+			'<div class="ut-ljoin"><p>아직 정부24 회원이 아니신가요?</p><button type="button" data-lm="soon">회원가입</button></div></div></section>' +
+			// ② 간편인증
+			'<section class="ut-step ut-simple"><header class="ut-shead"><button type="button" class="ut-back w" data-lm="back" aria-label="이전"></button><h2>간편인증</h2><span class="ut-g24">정부24</span></header>' +
+			'<div class="ut-sbody"><h4 class="ut-stit"><span class="ic c"></span>민간 인증서</h4><div class="ut-certs">' + tiles + '</div>' +
+			'<h4 class="ut-stit"><span class="ic i"></span>모바일 신분증</h4><div class="ut-certs"><button type="button" class="ut-cert" data-lm="soon"><span class="lg mid" aria-hidden="true"></span><span class="nm">모바일신분증</span></button></div>' +
+			'<h4 class="ut-stit2">본인인증 정보 입력</h4><dl class="ut-form"><dt>이름</dt><dd><input type="text" value="홍길동" readonly aria-label="이름"></dd><dt>생년월일</dt><dd><input type="text" value="19900101" readonly aria-label="생년월일"></dd>' +
+			'<dt>휴대폰 번호</dt><dd class="ph"><select disabled aria-label="통신사 번호"><option>010</option></select><input type="text" value="12345678" readonly aria-label="휴대폰 번호"></dd></dl><p class="ut-fake">시연용 가상 정보가 입력되어 있어요.</p>' +
+			'<div class="ut-agree-h"><h4 class="ut-stit2">서비스 이용에 대한 동의</h4><label class="ut-all"><input type="checkbox" data-lm="all"> 전체동의</label></div>' +
+			'<ul class="ut-agree">' + ['개인정보 이용 동의', '제3자정보제공동의', '고유식별정보처리동의'].map(function (t) { return '<li><label><input type="checkbox" class="ag"> ' + t + '</label><button type="button" data-lm="soon">보기</button></li>'; }).join('') + '</ul></div>' +
+			'<div class="ut-sbtn"><button type="button" data-lm="close">닫기</button><button type="button" class="go" data-lm="req" disabled>인증 요청</button></div></section>' +
+			// ③ 앱 인증 대기
+			'<section class="ut-step ut-wait"><header class="ut-shead"><h2>간편인증</h2><span class="ut-g24">정부24</span></header>' +
+			'<div class="ut-wbody"><span class="lg" aria-hidden="true"></span><p class="t"><strong class="nm"></strong> 앱에서<br>인증을 진행해 주세요.</p><p class="s">휴대폰으로 받은 인증 요청을 확인하고,<br>앱에서 인증을 마친 뒤 아래 <b>인증 완료</b>를 눌러 주세요.</p><p class="ut-fake">시연용 · 실제 인증 요청은 보내지 않아요.</p></div>' +
+			'<div class="ut-sbtn"><button type="button" data-lm="back2">취소</button><button type="button" class="go" data-lm="done">인증 완료</button></div></section></div>');
+		document.body.appendChild(LM);
+		var sel = -1;
+		function canGo() { $('[data-lm=req]', LM).disabled = !(sel > -1 && $$('.ag', LM).every(function (c) { return c.checked; })); }
+		LM.addEventListener('change', function (e) {
+			if (e.target.matches('[data-lm=all]')) $$('.ag', LM).forEach(function (c) { c.checked = e.target.checked; });
+			else if (e.target.classList.contains('ag')) $('[data-lm=all]', LM).checked = $$('.ag', LM).every(function (c) { return c.checked; });
+			canGo();
+		});
+		LM.addEventListener('click', function (e) {
+			var t = e.target.closest('[data-lm]'); if (!t || t.tagName === 'INPUT') return;
+			var k = t.getAttribute('data-lm');
+			if (k === 'close') closeLogin(false);
+			else if (k === 'soon') toast('사용성 평가에서는 <strong>간편 인증</strong>으로 로그인해 주세요.');
+			else if (k === 'simple') { LM.setAttribute('data-step', 'simple'); LM.scrollTop = 0; }
+			else if (k === 'back') { LM.setAttribute('data-step', 'type'); LM.scrollTop = 0; }
+			else if (k === 'back2') { LM.setAttribute('data-step', 'simple'); }
+			else if (k === 'cert') { sel = +t.getAttribute('data-i'); $$('.ut-cert[data-lm=cert]', LM).forEach(function (b, i) { b.classList.toggle('on', i === sel); b.setAttribute('aria-pressed', String(i === sel)); }); canGo(); }
+			else if (k === 'req') { if (t.disabled) return; var c = UT_CERTS[sel]; var lg = $('.ut-wait .lg', LM); lg.textContent = c[2]; lg.className = 'lg t' + (c[3] || 0); lg.style.background = c[1]; $('.ut-wait .nm', LM).textContent = c[0]; LM.setAttribute('data-step', 'wait'); LM.scrollTop = 0; }
+			else if (k === 'done') { closeLogin(UT_CERTS[sel][0]); }
+		});
+		return LM;
+	}
+	function openLogin() {
+		var m = loginModal(); m.setAttribute('data-step', 'type');
+		$$('.ut-cert', m).forEach(function (b) { b.classList.remove('on'); }); $$('input[type=checkbox]', m).forEach(function (c) { c.checked = false; }); $('[data-lm=req]', m).disabled = true;
+		m.classList.add('on'); m.scrollTop = 0; document.body.classList.add('overflow');
+	}
+	// 헤더 로그인 버튼도 같은 로그인 프로세스로(로그아웃은 세션만 해제)
+	document.addEventListener('click', function (e) {
+		var t = e.target.closest && e.target.closest('#iw_header .ico-login, #iw_header .ico-logout');
+		if (!t) return; e.preventDefault(); e.stopImmediatePropagation();
+		if (t.classList.contains('ico-logout')) { if (window.DemoSession) DemoSession.set(false); } else openLogin();
+	}, true);

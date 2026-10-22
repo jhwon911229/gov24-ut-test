@@ -661,6 +661,79 @@ body.v24-voice-open{overflow:hidden}
 
 /* 유의사항 톤다운 */
 .ut-stay{margin:.8rem 0 0;font-size:1.4rem;line-height:1.5;color:#6d7882}
+
+/* ===== 로그인 프로세스 (Figma 08. 회원계정) ===== */
+.ut-login{position:fixed;inset:0;z-index:2147482990;display:none;overflow-y:auto;-webkit-overflow-scrolling:touch;background:#fff;color:#1e2124;font-family:"Pretendard GOV",sans-serif;letter-spacing:-.01em}
+.ut-login.on{display:block}
+.ut-login .ut-step{display:none;min-height:100%;max-width:48rem;margin:0 auto;padding-top:3.2rem}
+.ut-login[data-step=type] .ut-type,.ut-login[data-step=simple] .ut-simple,.ut-login[data-step=wait] .ut-wait{display:flex;flex-direction:column}
+.ut-login button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.ut-lhead{position:sticky;top:3.2rem;z-index:2;display:flex;align-items:center;height:6.4rem;padding:0 1.2rem;background:#fff}
+.ut-lhead h2{font-size:1.8rem;font-weight:500;margin-left:.4rem}
+.ut-back{width:4rem;height:4rem;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231e2124' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 5l-7 7 7 7'/%3E%3C/svg%3E") center/2.4rem no-repeat!important}
+.ut-back.w{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 5l-7 7 7 7'/%3E%3C/svg%3E")!important}
+.ut-lbody{padding:1.6rem 1.6rem 4rem}
+.ut-ltit{font-size:2.6rem;font-weight:700;line-height:1.5}
+.ut-ltab{display:flex;margin:2.4rem 0 2.4rem;border:1px solid #cdd1d5;border-radius:.8rem;overflow:hidden}
+.ut-ltab button{flex:1;height:5.4rem;font-size:1.7rem;font-weight:700;color:#464c53}
+.ut-ltab button.on{background:#063a74;color:#fff}
+.ut-lgrp{margin-bottom:2.4rem}
+.ut-lgrp h4{font-size:1.9rem;font-weight:700;line-height:1.6;margin-bottom:1.6rem}
+.ut-lcards{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem}
+.ut-lcard{display:flex;flex-direction:column;align-items:flex-start;gap:2.2rem;min-height:13.3rem;padding:2.2rem 2.2rem 2rem;border:1px solid #cdd1d5!important;border-radius:1.2rem;background:#f4f5f6!important;text-align:left}
+.ut-lcard img{width:3.2rem;height:3.2rem}
+.ut-lcard span{font-size:1.7rem;font-weight:700;line-height:1.5}
+.ut-ljoin{border-top:1px solid #58616a;padding-top:2.4rem}
+.ut-ljoin p{font-size:1.7rem;font-weight:700}
+.ut-ljoin button{margin-top:.8rem;padding:.4rem .2rem;font-size:1.6rem;display:inline-flex;align-items:center;gap:.6rem}
+.ut-ljoin button::after{content:"";width:.9rem;height:.9rem;border:solid #1e2124;border-width:2px 2px 0 0;transform:rotate(45deg)}
+/* 간편인증 */
+.ut-shead{position:sticky;top:3.2rem;z-index:2;display:flex;align-items:center;gap:.4rem;height:5.6rem;padding:0 1.6rem 0 .8rem;background:#1b2b4d;color:#fff}
+.ut-wait .ut-shead{padding-left:1.6rem}
+.ut-shead h2{flex:1;font-size:1.7rem;font-weight:500}
+.ut-g24{font-size:1.4rem;font-weight:700;display:inline-flex;align-items:center;gap:.5rem}
+.ut-g24::before{content:"";width:1.8rem;height:1.8rem;border-radius:50%;background:conic-gradient(#c8102e 0 50%,#003478 50% 100%);border:2px solid #fff}
+.ut-sbody{flex:1;padding:2rem 1.6rem 2.4rem;background:#fff}
+.ut-stit{display:flex;align-items:center;gap:.8rem;font-size:1.6rem;font-weight:700;padding-bottom:1.2rem;border-bottom:2px solid #d5d8dc;margin-bottom:1.6rem}
+.ut-stit .ic{width:2.4rem;height:1.8rem;border:2px solid #29a3d6;border-radius:.3rem}
+.ut-certs{display:grid;grid-template-columns:repeat(4,1fr);gap:1.6rem .4rem;margin-bottom:2.8rem}
+.ut-cert{display:flex;flex-direction:column;align-items:center;gap:.6rem;padding:.4rem 0;border-radius:.8rem}
+.ut-cert .lg{display:flex;align-items:center;justify-content:center;width:4.8rem;height:4.8rem;border-radius:1.1rem;color:#fff;font-size:1.2rem;font-weight:800;box-shadow:0 0 0 1px rgba(0,0,0,.08)}
+.ut-cert .lg.t1{color:#3c1e1e}.ut-cert .lg.t2{color:#1f9be0}.ut-cert .lg.t3{color:#e4262a}
+.ut-cert .lg.mid{background:linear-gradient(135deg,#fff 30%,#d71c2b 30% 55%,#fff 55% 62%,#1d3f94 62%)}
+.ut-cert .nm{font-size:1.2rem;color:#33363d;white-space:nowrap}
+.ut-cert.on{background:#eaf1fe;box-shadow:0 0 0 2px #256ef4 inset}
+.ut-stit2{font-size:1.6rem;font-weight:700;margin:.4rem 0 1.2rem}
+.ut-form{display:grid;grid-template-columns:9.6rem 1fr;border-top:2px solid #8a949e}
+.ut-form dt,.ut-form dd{display:flex;align-items:center;min-height:5.6rem;border-bottom:1px solid #d5d8dc;font-size:1.5rem}
+.ut-form dt{padding-left:1.2rem;background:#f4f5f6;color:#33363d}
+.ut-form dd{padding:.6rem;gap:.4rem;margin:0}
+.ut-form input,.ut-form select{width:100%;min-width:0;height:4.2rem;border:1px solid #cdd1d5;border-radius:.2rem;padding:0 1rem;font:inherit;font-size:1.5rem;color:#6d7882;background:#fafbfb}
+.ut-form .ph select{width:7.2rem;flex:none;color:#1e2124}
+.ut-fake{margin-top:.8rem;font-size:1.3rem;color:#6d7882}
+.ut-agree-h{display:flex;align-items:center;justify-content:space-between;margin-top:2.8rem}
+.ut-agree-h .ut-stit2{margin:0}
+.ut-all{display:inline-flex;align-items:center;gap:.6rem;font-size:1.5rem;font-weight:700}
+.ut-agree{list-style:none;margin:1.2rem 0 0;padding:0;border:1px solid #d5d8dc}
+.ut-agree li{display:flex;align-items:center;justify-content:space-between;gap:.8rem;padding:1.2rem;border-bottom:1px solid #e6e8ea;font-size:1.4rem}
+.ut-agree li:last-child{border-bottom:0}
+.ut-agree label{display:inline-flex;align-items:center;gap:.8rem}
+.ut-login input[type=checkbox]{width:2rem;height:2rem;accent-color:#256ef4;margin:0}
+.ut-agree button{border:1px solid #33363d!important;padding:.2rem .7rem;font-size:1.3rem;border-radius:.2rem}
+.ut-sbtn{position:sticky;bottom:0;display:flex;height:6rem;box-shadow:0 -1px 0 #e6e8ea}
+.ut-sbtn button{flex:1;font-size:1.7rem;font-weight:700;background:#fff!important}
+.ut-sbtn .go{flex:2.3;background:#0098cf!important;color:#fff!important}
+.ut-sbtn .go:disabled{background:#b9c6cf!important;cursor:default}
+.ut-wbody{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2.4rem}
+.ut-wbody .lg{display:flex;align-items:center;justify-content:center;width:7.2rem;height:7.2rem;border-radius:1.8rem;color:#fff;font-size:1.6rem;font-weight:800;box-shadow:0 0 0 1px rgba(0,0,0,.08);margin-bottom:2.4rem;animation:utPulse 1.4s ease-in-out infinite}
+.ut-wbody .lg.t1{color:#3c1e1e}.ut-wbody .lg.t2{color:#1f9be0}.ut-wbody .lg.t3{color:#e4262a}
+@keyframes utPulse{50%{transform:scale(1.06)}}
+.ut-wbody .t{font-size:2.2rem;font-weight:700;line-height:1.45}
+.ut-wbody .s{margin-top:1.6rem;font-size:1.5rem;line-height:1.6;color:#464c53}
+.ut-wbody .ut-fake{margin-top:2rem}
+.ut-toast{z-index:2147483200!important}
+@media (min-width:1025px){.ut-login .ut-step{padding-top:3.6rem}.ut-lhead,.ut-shead{top:3.6rem}.ut-login{background:rgba(0,0,0,.55)}.ut-login .ut-step{background:#fff;margin:6rem auto;min-height:0;padding-top:0;border-radius:1.2rem;overflow:hidden}.ut-lhead,.ut-shead{position:static}}
+@media (max-width:340px){.ut-lcards{gap:1rem}.ut-lcard{padding:1.6rem 1.4rem;gap:1.6rem;min-height:11.6rem}.ut-lcard span{font-size:1.5rem}.ut-certs{gap:1.2rem 0}.ut-cert .lg{width:4.2rem;height:4.2rem;font-size:1.05rem}.ut-cert .nm{font-size:1.1rem}.ut-form{grid-template-columns:8rem 1fr}.ut-ltit{font-size:2.3rem}}
 </style>
 </head>
 <body class="iw-ai-body aih-page"><div id="demoProtoBanner" role="note">가상 서비스 · 사용성 평가용 시연 화면</div>
@@ -1721,6 +1794,7 @@ body.v24-voice-open{overflow:hidden}
     'use strict';
     var KEY = 'gov24AiDemoLoggedIn';
     var mem = /[?&]ls=1(&|#|$)/.test(location.search);
+    if (!mem) { try { sessionStorage.setItem(KEY, '0'); } catch (e) {} }
     function get() { try { var v = sessionStorage.getItem(KEY); if (v !== null) return v === '1'; } catch (e) {} return mem; }
     function set(v) { mem = !!v; try { sessionStorage.setItem(KEY, v ? '1' : '0'); } catch (e) {} document.dispatchEvent(new CustomEvent('demo-login', { detail: !!v })); }
     if (mem) { try { sessionStorage.setItem(KEY, '1'); } catch (e) {}
@@ -1736,7 +1810,7 @@ body.v24-voice-open{overflow:hidden}
 	'use strict';
 	var PROC_MS = 2500, INTRO_MS = 1800, THINK_MS = 700, STEP_MS = 650;
 	var SAMPLE_Q = '내가 받을 수 있는 혜택 뭐 있어?'; var VOICE_Q = null;
-	var GOV = '#demo-go', MYAPPLY = GOV, LIFE = GOV, BNF = 'benefit-list.html?set=aih', BNF_SETTING = 'benefit-list.html?set=aih';
+	var GOV = '#demo-go', MYAPPLY = GOV, LIFE = GOV, BNF = 'benefit-home.html', BNF_SETTING = 'benefit-home.html';
 	var $ = function (s, r) { return (r || document).querySelector(s); };
 	var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
 	var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
@@ -2115,7 +2189,7 @@ body.v24-voice-open{overflow:hidden}
 				} else {
 					put(sec, '<p class="ai-complete-message">' + (set.key === 'aih' ? '' : esc(set.label) + ' 기준으로 ') + '맞춤 혜택을 찾았어요.</p>' +
 						'<div class="ai-card-link-panel">' + set.items.slice(0, 5).map(function (b) { return '<a href="benefit.html?id=' + b.id + '" class="btn-card-box" title="' + esc(b.t) + ' 혜택알리미 상세"><b class="tit">' + esc(b.t) + '<i class="iconset ico-ai-arrow" aria-hidden="true"></i></b><p class="txt"><span>대상 :</span><span>' + esc(b.who) + '</span></p><p class="txt">기간 : ' + esc(b.when) + '</p></a>'; }).join('') +
-						'<a href="benefit-list.html?set=' + set.key + '" class="btn-more" title="혜택알리미 맞춤혜택조회">혜택알리미에서 더 많은 혜택 보기<i class="iconset ico-ai-arrow" aria-hidden="true"></i></a></div>' +
+						'<a href="benefit-home.html?set=' + set.key + '" class="btn-more" title="혜택알리미 맞춤혜택조회">혜택알리미에서 더 많은 혜택 보기<i class="iconset ico-ai-arrow" aria-hidden="true"></i></a></div>' +
 						'<p class="form-hint info">대화창에는 맞춤 혜택을 최대 5개까지 보여드려요. 더 많은 혜택과 행정정보 이용 동의·조건 설정은 혜택알리미에서 할 수 있어요.</p>');
 				}
 				end(sec, ['경기도에서 내가 받을 수 있는 혜택이 뭐야?', '60대가 받을 수 있는 혜택 알려줘', '주민등록등본 발급해줘']);
@@ -2219,6 +2293,74 @@ body.v24-voice-open{overflow:hidden}
 		}
 		fit(); window.addEventListener('resize', fit);
 	})();
+
+	/* ----------------------------------------------------------------------
+	   [사용성 평가] 로그인 : Figma 08. 회원계정 로그인 프로세스
+	   로그인 방식 선택(MO_UI-PT-II01M_로그인방식선택_개인) → 간편인증(UI-PT-IAA03M) → 앱 인증 후 [인증 완료]
+	   · 시연은 간편 인증만 진행 · 본인인증 정보는 가상 정보(홍길동)로 미리 채움(입력 불가)
+	   ---------------------------------------------------------------------- */
+	var UT_CERTS = [['카카오뱅크', '#FFE300', 'B', 1], ['국민인증서', '#FFCC4D', 'KB', 1], ['뱅크샐러드', '#FFFFFF', 'BS', 2], ['카카오톡', '#FEE500', 'TALK', 1],
+		['삼성패스', '#1F4AC8', 'Pass'], ['NH인증서', '#1653D9', 'NH'], ['페이코', '#FFFFFF', 'PAYCO', 3], ['우리인증서', '#FFFFFF', 'WON', 2],
+		['네이버', '#03C75A', 'N'], ['하나인증서', '#00857C', '하나'], ['드림인증', '#1953C4', 'D'], ['통신사PASS', '#F2334B', 'PASS']];
+	var UT_LT = [
+		['통합로그인', '한 번에 인증하고<br>모든 서비스 이용하기', [['mobile', '모바일 신분증'], ['simple', '간편 인증'], ['joint', '공동 인증서'], ['finance', '금융 인증서']]],
+		['생체인증', '빠르게 인증하고 서비스 이용하기', [['bio', '생체인증'], ['pin', '간편비밀번호'], ['pattern', '패턴']]],
+		['간편로그인', '간단히 로그인하고<br>필요 시 추가 인증하기', [['id', '아이디 로그인'], ['guest', '비회원 로그인<br>(개인)']]]];
+	function loginModal() {
+		if (LM) return LM;
+		var tiles = UT_CERTS.map(function (c, i) { return '<button type="button" class="ut-cert" data-lm="cert" data-i="' + i + '" aria-pressed="false"><span class="lg t' + (c[3] || 0) + '" style="background:' + c[1] + '" aria-hidden="true">' + c[2] + '</span><span class="nm">' + c[0] + '</span></button>'; }).join('');
+		LM = el('<div class="ut-login" id="utLogin" role="dialog" aria-modal="true" aria-label="로그인" data-step="type">' +
+			// ① 로그인 방식 선택
+			'<section class="ut-step ut-type"><header class="ut-lhead"><button type="button" class="ut-back" data-lm="close" aria-label="이전"></button><h2>로그인</h2></header>' +
+			'<div class="ut-lbody"><h3 class="ut-ltit">로그인 방식을<br>선택해 주세요.</h3><div class="ut-ltab" role="tablist"><button type="button" role="tab" aria-selected="true" class="on">개인</button><button type="button" role="tab" aria-selected="false" data-lm="soon">법인</button></div>' +
+			UT_LT.map(function (g) { return '<div class="ut-lgrp"><h4>' + g[1] + '</h4><div class="ut-lcards">' + g[2].map(function (t) { return '<button type="button" class="ut-lcard" data-lm="' + (t[0] === 'simple' ? 'simple' : 'soon') + '"><img src="static/images/login/ico-' + t[0] + '.png" alt=""><span>' + t[1] + '</span></button>'; }).join('') + '</div></div>'; }).join('') +
+			'<div class="ut-ljoin"><p>아직 정부24 회원이 아니신가요?</p><button type="button" data-lm="soon">회원가입</button></div></div></section>' +
+			// ② 간편인증
+			'<section class="ut-step ut-simple"><header class="ut-shead"><button type="button" class="ut-back w" data-lm="back" aria-label="이전"></button><h2>간편인증</h2><span class="ut-g24">정부24</span></header>' +
+			'<div class="ut-sbody"><h4 class="ut-stit"><span class="ic c"></span>민간 인증서</h4><div class="ut-certs">' + tiles + '</div>' +
+			'<h4 class="ut-stit"><span class="ic i"></span>모바일 신분증</h4><div class="ut-certs"><button type="button" class="ut-cert" data-lm="soon"><span class="lg mid" aria-hidden="true"></span><span class="nm">모바일신분증</span></button></div>' +
+			'<h4 class="ut-stit2">본인인증 정보 입력</h4><dl class="ut-form"><dt>이름</dt><dd><input type="text" value="홍길동" readonly aria-label="이름"></dd><dt>생년월일</dt><dd><input type="text" value="19900101" readonly aria-label="생년월일"></dd>' +
+			'<dt>휴대폰 번호</dt><dd class="ph"><select disabled aria-label="통신사 번호"><option>010</option></select><input type="text" value="12345678" readonly aria-label="휴대폰 번호"></dd></dl><p class="ut-fake">시연용 가상 정보가 입력되어 있어요.</p>' +
+			'<div class="ut-agree-h"><h4 class="ut-stit2">서비스 이용에 대한 동의</h4><label class="ut-all"><input type="checkbox" data-lm="all"> 전체동의</label></div>' +
+			'<ul class="ut-agree">' + ['개인정보 이용 동의', '제3자정보제공동의', '고유식별정보처리동의'].map(function (t) { return '<li><label><input type="checkbox" class="ag"> ' + t + '</label><button type="button" data-lm="soon">보기</button></li>'; }).join('') + '</ul></div>' +
+			'<div class="ut-sbtn"><button type="button" data-lm="close">닫기</button><button type="button" class="go" data-lm="req" disabled>인증 요청</button></div></section>' +
+			// ③ 앱 인증 대기
+			'<section class="ut-step ut-wait"><header class="ut-shead"><h2>간편인증</h2><span class="ut-g24">정부24</span></header>' +
+			'<div class="ut-wbody"><span class="lg" aria-hidden="true"></span><p class="t"><strong class="nm"></strong> 앱에서<br>인증을 진행해 주세요.</p><p class="s">휴대폰으로 받은 인증 요청을 확인하고,<br>앱에서 인증을 마친 뒤 아래 <b>인증 완료</b>를 눌러 주세요.</p><p class="ut-fake">시연용 · 실제 인증 요청은 보내지 않아요.</p></div>' +
+			'<div class="ut-sbtn"><button type="button" data-lm="back2">취소</button><button type="button" class="go" data-lm="done">인증 완료</button></div></section></div>');
+		document.body.appendChild(LM);
+		var sel = -1;
+		function canGo() { $('[data-lm=req]', LM).disabled = !(sel > -1 && $$('.ag', LM).every(function (c) { return c.checked; })); }
+		LM.addEventListener('change', function (e) {
+			if (e.target.matches('[data-lm=all]')) $$('.ag', LM).forEach(function (c) { c.checked = e.target.checked; });
+			else if (e.target.classList.contains('ag')) $('[data-lm=all]', LM).checked = $$('.ag', LM).every(function (c) { return c.checked; });
+			canGo();
+		});
+		LM.addEventListener('click', function (e) {
+			var t = e.target.closest('[data-lm]'); if (!t || t.tagName === 'INPUT') return;
+			var k = t.getAttribute('data-lm');
+			if (k === 'close') closeLogin(false);
+			else if (k === 'soon') toast('사용성 평가에서는 <strong>간편 인증</strong>으로 로그인해 주세요.');
+			else if (k === 'simple') { LM.setAttribute('data-step', 'simple'); LM.scrollTop = 0; }
+			else if (k === 'back') { LM.setAttribute('data-step', 'type'); LM.scrollTop = 0; }
+			else if (k === 'back2') { LM.setAttribute('data-step', 'simple'); }
+			else if (k === 'cert') { sel = +t.getAttribute('data-i'); $$('.ut-cert[data-lm=cert]', LM).forEach(function (b, i) { b.classList.toggle('on', i === sel); b.setAttribute('aria-pressed', String(i === sel)); }); canGo(); }
+			else if (k === 'req') { if (t.disabled) return; var c = UT_CERTS[sel]; var lg = $('.ut-wait .lg', LM); lg.textContent = c[2]; lg.className = 'lg t' + (c[3] || 0); lg.style.background = c[1]; $('.ut-wait .nm', LM).textContent = c[0]; LM.setAttribute('data-step', 'wait'); LM.scrollTop = 0; }
+			else if (k === 'done') { closeLogin(UT_CERTS[sel][0]); }
+		});
+		return LM;
+	}
+	function openLogin() {
+		var m = loginModal(); m.setAttribute('data-step', 'type');
+		$$('.ut-cert', m).forEach(function (b) { b.classList.remove('on'); }); $$('input[type=checkbox]', m).forEach(function (c) { c.checked = false; }); $('[data-lm=req]', m).disabled = true;
+		m.classList.add('on'); m.scrollTop = 0; document.body.classList.add('overflow');
+	}
+	// 헤더 로그인 버튼도 같은 로그인 프로세스로(로그아웃은 세션만 해제)
+	document.addEventListener('click', function (e) {
+		var t = e.target.closest && e.target.closest('#iw_header .ico-login, #iw_header .ico-logout');
+		if (!t) return; e.preventDefault(); e.stopImmediatePropagation();
+		if (t.classList.contains('ico-logout')) { if (window.DemoSession) DemoSession.set(false); } else openLogin();
+	}, true);
 
 	/* ---------- 버튼 동작 ---------- */
 	var ACTS = {

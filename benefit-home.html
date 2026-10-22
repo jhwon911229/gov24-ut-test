@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>[가상 서비스] 정부24 - 혜택알리미</title>
+<style>
+@font-face{font-family:"Pretendard GOV";font-weight:400;font-display:swap;src:url(fonts/Pretendard-Regular.woff2) format("woff2")}
+@font-face{font-family:"Pretendard GOV";font-weight:500;font-display:swap;src:url(fonts/Pretendard-Medium.woff2) format("woff2")}
+@font-face{font-family:"Pretendard GOV";font-weight:600;font-display:swap;src:url(fonts/Pretendard-SemiBold.woff2) format("woff2")}
+@font-face{font-family:"Pretendard GOV";font-weight:700;font-display:swap;src:url(fonts/Pretendard-Bold.woff2) format("woff2")}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#f4f5f7}
+body{font-family:"Pretendard GOV",-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;color:#1e2124;-webkit-text-size-adjust:100%;padding-top:32px}
+a{color:inherit;text-decoration:none}
+button{font:inherit;background:none;border:0;color:inherit;cursor:pointer}
+#demoProtoBanner{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:center;gap:8px;height:32px;padding:0 12px;background:#ffcc33;font-size:12px;font-weight:700;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,.15)}
+#demoProtoBanner::before{content:"!";display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#1e2124;color:#ffcc33;font-size:12px}
+.wrap{max-width:480px;margin:0 auto;min-height:calc(100vh - 32px);background:#f4f5f7}
+.head{position:sticky;top:32px;z-index:10;display:flex;align-items:center;height:56px;padding:0 8px 0 4px;background:#fff}
+.head h1{flex:1;font-size:18px;font-weight:600;margin-left:4px;white-space:nowrap}
+.ibtn{width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%}
+.ibtn svg{width:24px;height:24px}
+.ibtn img{width:28px;height:28px}
+.share{display:flex;justify-content:flex-end;padding:8px 12px 0}
+.main{padding:8px 16px 32px}
+.top{display:flex;align-items:flex-start;gap:12px;margin:16px 0 20px}
+.top .t{flex:1;min-width:0}
+.top h2{font-size:clamp(18px,5.3vw,21px);font-weight:700;line-height:1.35;word-break:keep-all}
+.top p{margin-top:6px;font-size:15px;color:#464c53}
+.round{width:46px;height:46px;border-radius:50%;background:#fff;border:1px solid #dfe3ea;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.round svg{width:22px;height:22px}
+.notice{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:10px;background:#fff3db;border:1px solid #ffe0a3;font-size:15px;line-height:1.4;margin-bottom:12px}
+.notice svg{flex:none;width:22px;height:22px}
+.card{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:22px 16px 22px 24px;border-radius:12px;margin-bottom:12px;min-height:118px}
+.card .k{font-size:16px;font-weight:600;color:#33363d}
+.card .n{margin-top:20px;font-size:21px;font-weight:700}
+.card .ic{width:48px;height:48px;border-radius:14px;background:#fff;display:flex;align-items:center;justify-content:center;flex:none;margin-bottom:6px}
+.card.ok{background:#eaf1fe;border:1px solid #d6e3fc}.card.ok .n{color:#1e5ee6}
+.card.chk{background:#fceeee;border:1px solid #f6dada}.card.chk .n{color:#b3262c}
+.past{display:flex;align-items:center;justify-content:center;gap:6px;height:56px;border-radius:10px;background:#fff;border:1px solid #dfe3ea;font-size:15px;margin-bottom:16px}
+.fam{background:#fff;border:1px solid #dfe3ea;border-radius:12px;padding:22px 24px 28px}
+.fam .a{color:#1e5ee6;font-weight:600;font-size:15px}
+.fam .b{margin-top:4px;font-size:15px;font-weight:700;line-height:1.5;word-break:keep-all}
+.fam .row{display:flex;gap:8px;margin-top:22px;flex-wrap:wrap}
+.chip{height:48px;min-width:48px;padding:0 14px;border-radius:6px;border:1px solid #33363d;background:#fff;font-size:15px;display:inline-flex;align-items:center;justify-content:center}
+.chip.add{background:#eaf1fe;border-color:#1e5ee6;color:#1e5ee6;font-size:24px;font-weight:300;padding:0}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);max-width:calc(100% - 32px);background:rgba(30,33,36,.92);color:#fff;font-size:14px;padding:12px 16px;border-radius:10px;opacity:0;transition:opacity .2s;pointer-events:none;text-align:center}
+.toast.on{opacity:1}
+</style>
+</head>
+<body>
+<div id="demoProtoBanner" role="note">가상 서비스 · 사용성 평가용 시연 화면</div>
+<div class="wrap">
+  <header class="head">
+    <button class="ibtn" type="button" onclick="history.length>1?history.back():location.href='ai.html?mode=benefit'" aria-label="뒤로"><svg viewBox="0 0 24 24" fill="none" stroke="#1e2124" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <h1>혜택알리미</h1>
+    <a class="ibtn" href="ai.html?mode=benefit" aria-label="AI국민비서"><img src="static/images/ai/img_gubbi_head.png" alt=""></a>
+    <button class="ibtn demo" type="button" aria-label="검색"><svg viewBox="0 0 24 24" fill="none" stroke="#1e2124" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
+    <button class="ibtn demo" type="button" aria-label="전체메뉴"><svg viewBox="0 0 24 24" fill="none" stroke="#1e2124" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+  </header>
+  <div class="share"><button class="ibtn demo" type="button" aria-label="공유"><svg viewBox="0 0 24 24" fill="none" stroke="#1e2124" stroke-width="1.8"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/></svg></button></div>
+  <main class="main">
+    <section class="top">
+      <div class="t"><h2>홍길동님의 맞춤혜택</h2><p id="ago">15일 전 (2026년 10월 07일)</p></div>
+      <button class="round demo" type="button" aria-label="맞춤 조건 설정"><svg viewBox="0 0 24 24" fill="none" stroke="#1e2124" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M12 2.8l1.6 2.3 2.8-.6.9 2.7 2.6 1.2-.6 2.8 1.9 2.1-1.9 2.1.6 2.8-2.6 1.2-.9 2.7-2.8-.6L12 21.2l-1.6-2.3-2.8.6-.9-2.7-2.6-1.2.6-2.8L2.8 12l1.9-2.1-.6-2.8 2.6-1.2.9-2.7 2.8.6z"/></svg></button>
+      <button class="round demo" type="button" aria-label="알림 설정"><svg viewBox="0 0 24 24" fill="none" stroke="#1e2124" stroke-width="1.7" stroke-linejoin="round"><path d="M6 17V11a6 6 0 0112 0v6l1.5 2h-15z"/><path d="M10 21h4"/></svg></button>
+    </section>
+    <div class="notice"><svg viewBox="0 0 24 24"><path fill="#ffb114" d="M12 2a1.6 1.6 0 011.6 1.6v.5A6.5 6.5 0 0118.5 10.5V15l2 3H3.5l2-3v-4.5A6.5 6.5 0 0110.4 4.1v-.5A1.6 1.6 0 0112 2z"/><path fill="#ffb114" d="M9.5 19.5h5a2.5 2.5 0 01-5 0z"/></svg><span>국민은행(KB스타뱅킹)로 알림 받고 있어요</span></div>
+    <a class="card ok" href="benefit-list.html?set=aih"><div><p class="k">신청 가능한 혜택</p><p class="n">7개</p></div><span class="ic"><svg width="28" height="28" viewBox="0 0 28 28"><rect x="5" y="11" width="18" height="12" rx="2" fill="#4c86f0"/><rect x="4" y="8" width="20" height="5" rx="1.5" fill="#7fa8f5"/><rect x="12.6" y="8" width="2.8" height="15" fill="#c9dafb"/><path d="M14 8c-2-3.5-5.5-3-5-1s3 1 5 1zm0 0c2-3.5 5.5-3 5-1s-3 1-5 1z" fill="#4c86f0"/></svg></span></a>
+    <a class="card chk" href="benefit-list.html?set=aih"><div><p class="k">확인 필요한 혜택</p><p class="n">28개</p></div><span class="ic"><svg width="28" height="28" viewBox="0 0 28 28"><rect x="6" y="4" width="16" height="20" rx="2.5" fill="#ef7f6e"/><path d="M10.5 14.5l2.4 2.4 4.6-4.8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="10" y="19.5" width="8" height="1.6" rx=".8" fill="#fbd3cd"/></svg></span></a>
+    <a class="past" href="benefit-list.html?set=aih">지난 혜택보기 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1e2124" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></a>
+    <section class="fam">
+      <p class="a">등록된 가족 구성에 따라</p>
+      <p class="b">자녀 · 가족 대상 혜택을 자동으로 안내해드립니다.</p>
+      <div class="row"><button class="chip add demo" type="button" aria-label="가족 추가">+</button><button class="chip demo" type="button">홍서준</button></div>
+    </section>
+  </main>
+</div>
+<div class="toast" id="toast" role="status">사용성 평가에서는 제공하지 않는 기능이에요.</div>
+<script>
+(function(){
+  // 기준일(10.07.)로부터 경과일 표시
+  var base=new Date(2026,9,7), d=Math.max(0,Math.floor((new Date()-base)/864e5));
+  document.getElementById('ago').textContent=(d?d+'일 전':'오늘')+' (2026년 10월 07일)';
+  var m=/[?&]set=([\w-]+)/.exec(location.search); if(m) document.querySelectorAll('a[href^="benefit-list.html"]').forEach(function(a){a.href='benefit-list.html?set='+m[1]});
+  var t=document.getElementById('toast'),tm;
+  document.querySelectorAll('.demo').forEach(function(b){b.addEventListener('click',function(){t.classList.add('on');clearTimeout(tm);tm=setTimeout(function(){t.classList.remove('on')},1600)})});
+})();
+</script>
+</body>
+</html>

@@ -44,7 +44,7 @@ rep('<button type="button" class="aih-talk" id="aihTalk" data-voice-open>누르�
 
 # ---------- 스크립트 ----------
 rep("var GOV = 'https://www.gov.kr/portal/main', MYAPPLY = GOV, LIFE = GOV, BNF = 'https://www.gov.kr/portal/rcvfvrSvc/main';",
-    "var GOV = '#demo-go', MYAPPLY = GOV, LIFE = GOV, BNF = 'benefit-list.html?set=aih', BNF_SETTING = 'benefit-list.html?set=aih';")
+    "var GOV = '#demo-go', MYAPPLY = GOV, LIFE = GOV, BNF = 'benefit-home.html', BNF_SETTING = 'benefit-home.html';")
 # 음성: 이 화면에서는 '② 음성 서비스' 안내만
 rep("$$('[data-voice-open]').forEach(function (b) { b.addEventListener('click', openVoice); });",
     "$$('[data-voice-open]').forEach(function (b) { b.addEventListener('click', voiceNotice); });")
@@ -71,7 +71,7 @@ rep("function benefit() {\n\t\tneedAuth('맞춤 혜택은 ' + NAME + '님의 정
     "function benefit(q) {\n\t\tneedAuth('맞춤 혜택은 ' + NAME + '님의 정보를 바탕으로 찾아드려요.', function () { benefitResult(q); });")
 rep("function benefitResult() {", "function benefitResult(q) {\n\t\tvar set = bnSet(q);")
 rep("put(sec, '<p class=\"ai-complete-message\">맞춤 혜택을 찾았어요.</p>' +\n\t\t\t\t\t\t'<div class=\"ai-card-link-panel\">' + BNF_LIST.slice(0, 5).map(function (b) { return '<a href=\"' + BNF + '\" class=\"btn-card-box\" target=\"_blank\" title=\"' + esc(b[0]) + ' 혜택알리미 상세(새 창)\"><b class=\"tit\">' + esc(b[0]) + '<i class=\"iconset ico-ai-arrow\" aria-hidden=\"true\"></i></b><p class=\"txt\"><span>대상 :</span><span>' + esc(b[1]) + '</span></p><p class=\"txt\">기간 : ' + esc(b[2]) + '</p></a>'; }).join('') +\n\t\t\t\t\t\t'<a href=\"' + BNF + '\" class=\"btn-more\" target=\"_blank\" title=\"혜택알리미 맞춤혜택조회(새 창)\">혜택알리미에서 더 많은 혜택 보기<i class=\"iconset ico-ai-arrow\" aria-hidden=\"true\"></i></a></div>' +",
-    "put(sec, '<p class=\"ai-complete-message\">' + (set.key === 'aih' ? '' : esc(set.label) + ' 기준으로 ') + '맞춤 혜택을 찾았어요.</p>' +\n\t\t\t\t\t\t'<div class=\"ai-card-link-panel\">' + set.items.slice(0, 5).map(function (b) { return '<a href=\"benefit.html?id=' + b.id + '\" class=\"btn-card-box\" title=\"' + esc(b.t) + ' 혜택알리미 상세\"><b class=\"tit\">' + esc(b.t) + '<i class=\"iconset ico-ai-arrow\" aria-hidden=\"true\"></i></b><p class=\"txt\"><span>대상 :</span><span>' + esc(b.who) + '</span></p><p class=\"txt\">기간 : ' + esc(b.when) + '</p></a>'; }).join('') +\n\t\t\t\t\t\t'<a href=\"benefit-list.html?set=' + set.key + '\" class=\"btn-more\" title=\"혜택알리미 맞춤혜택조회\">혜택알리미에서 더 많은 혜택 보기<i class=\"iconset ico-ai-arrow\" aria-hidden=\"true\"></i></a></div>' +")
+    "put(sec, '<p class=\"ai-complete-message\">' + (set.key === 'aih' ? '' : esc(set.label) + ' 기준으로 ') + '맞춤 혜택을 찾았어요.</p>' +\n\t\t\t\t\t\t'<div class=\"ai-card-link-panel\">' + set.items.slice(0, 5).map(function (b) { return '<a href=\"benefit.html?id=' + b.id + '\" class=\"btn-card-box\" title=\"' + esc(b.t) + ' 혜택알리미 상세\"><b class=\"tit\">' + esc(b.t) + '<i class=\"iconset ico-ai-arrow\" aria-hidden=\"true\"></i></b><p class=\"txt\"><span>대상 :</span><span>' + esc(b.who) + '</span></p><p class=\"txt\">기간 : ' + esc(b.when) + '</p></a>'; }).join('') +\n\t\t\t\t\t\t'<a href=\"benefit-home.html?set=' + set.key + '\" class=\"btn-more\" title=\"혜택알리미 맞춤혜택조회\">혜택알리미에서 더 많은 혜택 보기<i class=\"iconset ico-ai-arrow\" aria-hidden=\"true\"></i></a></div>' +")
 rep("end(sec, ['경기도에서 내가 받을 수 있는 혜택이 뭐야?', '회사에 제출할 서류 준비해줘', '운전면허 갱신기간 알려줘']);",
     "end(sec, ['경기도에서 내가 받을 수 있는 혜택이 뭐야?', '60대가 받을 수 있는 혜택 알려줘', '주민등록등본 발급해줘']);")
 
@@ -79,6 +79,8 @@ rep("end(sec, ['경기도에서 내가 받을 수 있는 혜택이 뭐야?', '�
 rep("\t/* ---------- 버튼 동작 ---------- */", open(os.path.join(OUT, 'tools/ut_ai.js'), encoding='utf-8').read() + "\n\t/* ---------- 버튼 동작 ---------- */")
 # 유의사항 톤다운 : 주황 경고 박스 → 회색 안내 문구 (중간보고 데모와 동일)
 s = s.replace('<div class="box-alert warning no-tit"><p class="txt icon">화면을 이동하면 발급이 종료됩니다</p></div>', '<p class="ut-stay">발급이 끝날 때까지 이 화면에 머물러 주세요.</p>')
+# 사용성 평가 : 화면에 들어올 때마다 로그아웃 상태에서 시작(메인→AI 핸드오프의 ls=1만 예외)
+s = s.replace("    var mem = /[?&]ls=1(&|#|$)/.test(location.search);", "    var mem = /[?&]ls=1(&|#|$)/.test(location.search);\n    if (!mem) { try { sessionStorage.setItem(KEY, '0'); } catch (e) {} }", 1)
 open(os.path.join(OUT, 'ai.html'), 'w', encoding='utf-8').write(s)
 
 # ---------- 문서출력 ----------
