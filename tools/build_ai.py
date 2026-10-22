@@ -77,6 +77,8 @@ rep("end(sec, ['경기도에서 내가 받을 수 있는 혜택이 뭐야?', '�
 
 # 사용성 평가 추가 함수(주소 확인·선택, 혜택 조건, 안내 토스트)
 rep("\t/* ---------- 버튼 동작 ---------- */", open(os.path.join(OUT, 'tools/ut_ai.js'), encoding='utf-8').read() + "\n\t/* ---------- 버튼 동작 ---------- */")
+# 유의사항 톤다운 : 주황 경고 박스 → 회색 안내 문구 (중간보고 데모와 동일)
+s = s.replace('<div class="box-alert warning no-tit"><p class="txt icon">화면을 이동하면 발급이 종료됩니다</p></div>', '<p class="ut-stay">발급이 끝날 때까지 이 화면에 머물러 주세요.</p>')
 open(os.path.join(OUT, 'ai.html'), 'w', encoding='utf-8').write(s)
 
 # ---------- 문서출력 ----------

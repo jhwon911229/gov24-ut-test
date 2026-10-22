@@ -46,3 +46,6 @@
 #aiLog .btn-card-box{box-sizing:border-box}
 #aiLog .btn-card-box .txt{overflow:hidden;text-overflow:ellipsis}
 #aiLog .chip-area .form-chip label{white-space:normal;word-break:keep-all;height:auto;min-height:4.4rem;text-align:left}
+
+/* 유의사항 톤다운 */
+.ut-stay{margin:.8rem 0 0;font-size:1.4rem;line-height:1.5;color:#6d7882}

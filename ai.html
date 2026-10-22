@@ -658,6 +658,9 @@ body.v24-voice-open{overflow:hidden}
 #aiLog .btn-card-box{box-sizing:border-box}
 #aiLog .btn-card-box .txt{overflow:hidden;text-overflow:ellipsis}
 #aiLog .chip-area .form-chip label{white-space:normal;word-break:keep-all;height:auto;min-height:4.4rem;text-align:left}
+
+/* 유의사항 톤다운 */
+.ut-stay{margin:.8rem 0 0;font-size:1.4rem;line-height:1.5;color:#6d7882}
 </style>
 </head>
 <body class="iw-ai-body aih-page"><div id="demoProtoBanner" role="note">가상 서비스 · 사용성 평가용 시연 화면</div>
@@ -1931,7 +1934,7 @@ body.v24-voice-open{overflow:hidden}
 		answer(true, function (sec) {
 			put(sec, '<p>' + why + ' <strong>정부24 로그인(간편인증 1회)</strong>이 필요해요.</p>' +
 				'<div class="ai-process-messages"><ul class="ai-process-list"><li class="now aih-login-li"><span class="text-shimmer">로그인을 진행해 주세요.</span> <a href="#" class="btn-txt sm ico-arr-right" data-act="login">로그인하기</a></li></ul>' +
-				(issue ? '<div class="box-alert warning no-tit"><p class="txt icon">화면을 이동하면 발급이 종료됩니다</p></div>' : '') + '</div>');
+				(issue ? '<p class="ut-stay">발급이 끝날 때까지 이 화면에 머물러 주세요.</p>' : '') + '</div>');
 			authLi = $('.aih-login-li', sec);
 		});
 	}
@@ -2007,7 +2010,7 @@ body.v24-voice-open{overflow:hidden}
 				'<section class="ai-package-panel"><h3 class="employment-package-heading"><button type="button" class="employment-package-toggle" aria-expanded="true" aria-controls="pg' + id + '"><span class="employment-package-title">발급 진행 현황</span><i class="issue-toggle-icon is-open" aria-hidden="true"></i></button></h3>' +
 				'<div class="employment-package-detail" id="pg' + id + '"><div class="ai-process-messages"><ul class="ai-process-list" id="pgs' + id + '"><li class="now">민원이 발급 중입니다.</li><li>모든 민원의 발급이 완료되었습니다.</li></ul></div>' +
 				'<div class="ai-progress-wrap"><div class="ai-progress-label"><span id="pgl' + id + '">0/' + docs.length + '건 완료</span><span id="pgp' + id + '">0%</span></div><div class="ai-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="pgb' + id + '"><span style="width:0%"></span></div></div>' +
-				'<div class="ai-progress-copy"><p>수령방법은 온라인발급(본인출력), 발급형태는 전체발급으로 진행됩니다.</p><div class="box-alert warning no-tit"><p class="txt icon">화면을 이동하면 발급이 종료됩니다</p></div></div>' +
+				'<div class="ai-progress-copy"><p>수령방법은 온라인발급(본인출력), 발급형태는 전체발급으로 진행됩니다.</p><p class="ut-stay">발급이 끝날 때까지 이 화면에 머물러 주세요.</p></div>' +
 				'<ul class="ai-document-list" id="pgd' + id + '">' + docs.map(function (d) { return '<li><span class="list-name">' + esc(d) + '</span><span class="status">대기</span></li>'; }).join('') + '</ul></div></section>');
 			var li = $$('#pgd' + id + ' li'), n = 0;
 			(function next() {
